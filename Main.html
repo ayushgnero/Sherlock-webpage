@@ -5,7 +5,7 @@ $password="";
 $db="demo";
 mysql_connect($host,$user,$password);
 mysql_select_db($db)
-if (isset(['name']))
+if (isset($_POST['name']))
 {
   $uname = #_POST['name']
   $password=$_POST['password']
