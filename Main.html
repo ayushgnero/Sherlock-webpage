@@ -3,6 +3,26 @@ $host="localhost";
 $user="root";
 $password="";
 $db="demo";
+mysql_connect($host,$user,$password);
+mysql_select_db($db)
+if (isset(['name']))
+{
+  $uname = #_POST['name']
+  $password=$_POST['password']
+  $sql="select * from login where user='".uname."'And password = '".password."'limit 1";
+  $result=mysql_query($sql);
+  if(mysql_num_rows($result)==1)
+  {
+    echo "sucess";
+    exit();
+  }
+  else
+  {
+    echoe "fail";
+    exit();
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
