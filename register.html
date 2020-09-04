@@ -574,26 +574,28 @@ body
 <div style="display:none;" id="myDiv" class="a1">
   <img src="Images/kri.png" alt="logo" width="400px" >
   <div class="animate-bottom form">
-    <div class="a2 form">
-      <input type="text" name="Username" autocomplete="off" required>
-      <label for="Username" class="label-name">
-        <span class="content-name">Username</span>
-      </label>
-    </div>
-      <div class="a3 form">
-        <input type="password" name="password" autocomplete="off" required>
-        <label for="password" class="label-name">
-          <span class="content-name">Password</span>
+    <form action="http://localhost/Signup.php" method="post">
+      <div class="a2 form">
+        <input type="text" name="username" autocomplete="off" required>
+        <label for="username" class="label-name">
+          <span class="content-name">Username</span>
         </label>
       </div>
-      <div class="a3 form">
-        <input type="password" name="password" autocomplete="off" required>
-        <label for="password" class="label-name">
-          <span class="content-name">Re-Enter Password</span>
-        </label>
-      </div>
-      <p class="a5">Already have an Account?<a href="Main.html" target="_self"> Sign In</a></p>
-      <button type="submit" name="Signup" class="a4">Sign Up</button>
+        <div class="a3 form">
+          <input type="password" name="password" autocomplete="off" required>
+          <label for="password" class="label-name">
+            <span class="content-name">Password</span>
+          </label>
+        </div>
+        <div class="a3 form">
+          <input type="password" name="repassword" autocomplete="off" required>
+          <label for="repassword" class="label-name">
+            <span class="content-name">Re-Enter Password</span>
+          </label>
+        </div>
+        <p class="a5">Already have an Account?<a href="Main.html" target="_self"> Sign In</a></p>
+        <button type="submit" name="Signup" class="a4">Sign Up</button>
+    </form>
   </div>
 </div>
 
