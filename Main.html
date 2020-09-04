@@ -573,20 +573,23 @@ body
 <div style="display:none;" id="myDiv" class="a1">
   <img src="Images/kri.png" alt="logo" width="400px" >
   <div class="animate-bottom form">
-    <div class="a2 form">
-      <input type="text" name="name" autocomplete="off" required>
-      <label for="name" class="label-name">
-        <span class="content-name">Username</span>
-      </label>
-    </div>
-      <div class="a3 form">
-        <input type="password" name="password" autocomplete="off" required>
-        <label for="password" class="label-name">
-          <span class="content-name">Password</span>
-        </label>
-      </div>
-      <p class="a5">New Here?<a href="register.html" target="_self"> Sign Up</a></p>
-      <button type="button" name="button" class="a4">Sign In</button>
+    <form  method="post" action="http://localhost/connect.php">
+      <div class="a2 form">
+          <input type="text" name="username" autocomplete="off" required>
+          <label for="username" class="label-name">
+            <span class="content-name">Username</span>
+          </label>
+        </div>
+          <div class="a3 form">
+            <input type="password" name="password" autocomplete="off" required>
+            <label for="password" class="label-name">
+              <span class="content-name">Password</span>
+            </label>
+          </div>
+          <p class="a5">New Here?<a href="register.html" target="_self"> Sign Up</a></p>
+          <button type="submit" name="Signin" class="a4">Sign In</button>
+    </form>
+
   </div>
 </div>
 
@@ -594,7 +597,7 @@ body
 var myVar;
 
 function myFunction() {
-  myVar = setTimeout(showPage, 1000);
+  myVar = setTimeout(showPage, 4000);
 }
 
 function showPage() {
