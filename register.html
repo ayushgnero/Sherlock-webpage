@@ -1,268 +1,300 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <title>SHERLOCKED</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/glitch.css">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Manjari:wght@700&family=Roboto+Slab&display=swap');
-/* Center the loader */
-#loader {
-  position: absolute;
-}
-a
-{
-  text-decoration: none;
-  color:white;
-  opacity: 0.4;
-  transition: 0.3s;
-}
-a:hover
-{
-  opacity: 1;
-}
-.a5
-{
-    text-align: center;
-    margin-top: 2%;
-    margin-left: 25%;
-}
-img
-{
-    margin-top: 11%
-}
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  display:flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction:column;
-  margin:0px;
-}
-.a4
-{
-  width:150px;
-  margin-top: 0.5%;
-  margin-left: 38%;
-  background-color: #af0404;
-  border-radius: 25px;
-  border: none;
-  font-family: 'Manjari', sans-serif;
-  font-size: 16px;
-  color: white;
-  width:400px;
-  height:45px;
-  opacity: 0.4;
-  transition: 0.3s;
-}
-.a4:hover
-{
-  opacity: 1
-}
-.a2
-{
-  width: 40%;
-  margin-left: 29%;
-  margin-top: 1%;
+    <head>
+      <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
 
-}
-.a3
-{
-  width: 40%;
-  margin-left: 29%;
-  margin-top: 2%;
-}
-.form
-{
-  position: relative;
-  color: #d72323;
-  text-align: left;
-  font-family: 'Manjari', sans-serif;
-  font-style:  ;
-  overflow: hidden;
-}
-.form input
-{
-  width:100%;
-  width:100%;
-  margin-left:4%;
-  color: #af0404;
-  background: transparent;
-  padding-top: 20px;
-  border:none;
-}
-.form label
-{
-  position: absolute;
-  bottom:0px;
-  left:2%;
-  width:100%;
-  height: 100%;
-  pointer-events: none;
-  border-bottom: 1px solid #af0404;
-}
-.form label::after
-{
-  content:"";
-  position: absolute;
-  height: 100%;
-  left:0px;
-  bottom:-1px;
-  width:100%;
-  border-bottom: 2px solid red;
-  transform: translateX(-100%);
-  transition: transform 0.2s ease;
-}
-.content-name
-{
-    position:absolute;
-    bottom:5px;
-    left:0px;
-    transition: all 0.2s ease;
-}
-.form input:focus + .label-name .content-name, .form input:valid + .label-name .content-name
-{
-  transform: translateY(-130%);
-  font-size: 10px;
-  color:red;
-  padding-top:20px;
-  border:none;
-  outline:none;
-}
-.form input:focus + .label-name::after, .form input:valid + .label-name::after
-{
-  transform: translateX(0%);
-}
+            html, body {
+                padding:0;
+                margin:0;
+                height: 100vh;
+                width: 100%;
+                background:#000;
+                overflow:hidden;
+            }
 
-.a1
-{
-  background-position: center;
-   background-size: cover;
-  background-image: url("css/Images/853865.jpg");
-  height: 100%;
-  margin:0px;
-  width:100%;
-}
+            .notes
+            {
+                position:absolute;
+            }
 
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
+        	  .asd
+        		{
+        			background color:rgba(0,0,0,0.1);
+        			opacity:30%;
+        			width:100%;
+        			height:100vh;
+            }
+            .scroll
+            {
+              background-color:rgba(0,0,0,0);
+              margin-left:110%;
+              margin-top:30%;
+              width:900px;
+              height:50vh;
+              color:white;
+              display: grid;
+              grid-template-columns: 100% auto;
+            }
 
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 }
-  to { bottom:0px; opacity:1 }
-}
+            .line {
+                  position: relative;
+                  color:white;
+                  top: 100%;
+                  width: 11em;
+                  margin: 10px auto;
+                  border-right: 2px solid rgba(255, 255, 255, 0.75);
+                  font-size: 100%;
+                  text-align: center;
+                  white-space: nowrap;
+                  left:-35%;
+                  margin-top: 95%;
+                  overflow: hidden;transform: translateY(-50%);
+            }
 
-@keyframes animatebottom {
-  from{ bottom:-100px; opacity:0 }
-  to{ bottom:0; opacity:1 }
-}
+            .anim-typewriter
+            {
+                  animation: typewriter 8s steps(24) 2s 1 normal both,
+                  blinkTextCursor 500ms steps(24) infinite normal;
+                  animation-iteration-count: infinite;
+                  animation-direction: alternate;
+            }
 
-#myDiv {
-  display: none;
-  text-align: center;
-}
-@font-face
-{
-    font-family: 'out';
-    src: url('css/Fonts/I AM SHERLOCKED.ttf');
-}
-:root
-{
-   --color-text: #fff;
-   --color-bg: #000;
-   --color-link: #af0404;
-   --color-link-hover: #fff;
-   --color-info: #efc453;
-   --glitch-width: 100vw;
-   --glitch-height:0vh;
-   --gap-horizontal: 10px;
-   --gap-vertical: 5px;
-   --time-anim: 4s;
-   --delay-anim: 2s;
-   --blend-mode-1: none;
-   --blend-mode-2: none;
-   --blend-mode-3: none;
-   --blend-mode-4: none;
-   --blend-mode-5: overlay;
-   --blend-color-1: transparent;
-   --blend-color-2: transparent;
-   --blend-color-3: transparent;
-   --blend-color-4: transparent;
-   --blend-color-5: #af4949;
-}
- *, *::before, *::after
-{
-   box-sizing: border-box;
-}
-body
-{
-  margin: 0;
-  padding: 0;
-}
-}
-</style>
-</head>
-<body onload="myFunction()" style="margin:0;">
+            @keyframes typewriter {
+                  from {
+                        width: 0;
+                  }
+                  to {
+                        width: 11em;
+                  }
+            }
 
-<div id="loader">
-  <div class="glitch">
-    <div class="glitch__item"></div>
-    <div class="glitch__item"></div>
-    <div class="glitch__item"></div>
-    <div class="glitch__item"></div>
-    <div class="glitch__item"></div>
-    <h1 class="glitch__title">I AM SHERLOCKED</h1>
-  </div>
-</div>
+            @keyframes blinkTextCursor {
+                  from {
+                        border-right-color: rgba(255, 255, 255, 0.75);
+                  }
+                  to {
+                        border-right-color: transparent;
+                  }
+            }
 
-<div style="display:none;" id="myDiv" class="a1">
-  <img src="css/Images/kri.png" alt="logo" width="400px" >
-  <div class="animate-bottom form">
-    <form action="http://localhost/Signup.php" method="post">
-      <div class="a2 form">
-        <input type="text" name="username" autocomplete="off" required>
-        <label for="username" class="label-name">
-          <span class="content-name">Username</span>
-        </label>
-      </div>
-        <div class="a3 form">
-          <input type="password" name="password" autocomplete="off" required>
-          <label for="password" class="label-name">
-            <span class="content-name">Password</span>
-          </label>
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
+        <script src="../implementations/three-prwm-loader/PRWMLoader.js"></script>
+    </head>
+    <body>
+        <img src="../css/Images/kri.png" alt="logo" style="height: 75px; position: absolute; left:2%; top:2%">
+
+        <div class="models">
+              <img src="../css/Images/iwplog1.png" alt="logo" style="height: 25%; padding-left: 25%; position: absolute; top: 40%;">
+
         </div>
-        <div class="a3 form">
-          <input type="password" name="repassword" autocomplete="off" required>
-          <label for="repassword" class="label-name">
-            <span class="content-name">Re-Enter Password</span>
-          </label>
         </div>
-        <p class="a5">Already have an Account?<a href="Main.html" target="_self"> Sign In</a></p>
-        <button type="submit" name="Signup" class="a4">Sign Up</button>
-    </form>
-  </div>
-</div>
+        <div class="notes">
+          <p class="line anim-typewriter">New Adventure Awaits!!! HaveFun!!!</p>
+          <div class="scroll" data-simplebar>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
+              <p>hi</p>
 
-<script>
-var myVar;
+          </div>
+        </div>
+        <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+        <script>
 
-function myFunction() {
-  myVar = setTimeout(showPage, 0000);
-}
+            var container;
 
-function showPage() {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("myDiv").style.display = "block";
-}
-</script>
+            var camera, scene, renderer;
 
-</body>
+            var mouseX = 0, mouseY = 0;
+
+            var windowHalfX = window.innerWidth / 2;
+            var windowHalfY = window.innerHeight / 2;
+
+
+            init();
+
+            animate();
+
+
+            function init() {
+                container = document.createElement( 'div' );
+                document.body.appendChild( container );
+
+                camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
+                camera.position.z = 950;
+
+                // scene
+
+                scene = new THREE.Scene();
+
+                var ambient = new THREE.AmbientLight( 0x210600);
+                scene.add( ambient );
+
+                var directionalLight = new THREE.DirectionalLight( 0xaf0404,2);
+                directionalLight.position.set( 15, 20, -3 );
+                scene.add( directionalLight );
+
+                // model
+
+                var loader = new THREE.PRWMLoader();
+                var material = new THREE.MeshPhongMaterial({
+                    side: THREE.FrontSide
+                });
+
+                /*
+                var material = new THREE.MeshBasicMaterial({
+                    map: new THREE.TextureLoader().load( "./assets/images/IWP.001.png" )
+                });*/
+
+
+                var busy = false;
+                var mesh = null;
+
+                var onProgress = function ( xhr ) {
+                    if ( xhr.lengthComputable ) {
+                        var percentComplete = xhr.loaded / xhr.total * 100;
+                        console.log( Math.round(percentComplete, 2) + '% downloaded' );
+
+                        if (xhr.loaded === xhr.total) {
+                            console.log('File size: ' + (xhr.total / 1024).toFixed(2) + 'kB');
+                            console.timeEnd('Download');
+                        }
+                    }
+                };
+
+                var onError = function ( xhr ) {
+                    busy = false;
+                };
+
+                function loadGeometry (url) {
+                    if (busy) return;
+
+                    busy = true;
+
+                    if (mesh !== null) {
+                        scene.remove(mesh);
+                        mesh.geometry.dispose();
+                    }
+
+                    console.log('-- Loading', url);
+                    console.time('Download');
+                    loader.load( url, function ( geometry ) {
+                        mesh = new THREE.Mesh(geometry, material);
+                        mesh.scale.set(50,50,50);
+                        scene.add( mesh );
+
+                        console.log(geometry.index ? 'indexed geometry' : 'non-indexed geometry');
+                        console.log('# of vertices: ' + geometry.attributes.position.count);
+                        console.log('# of polygons: ' + (geometry.index ? geometry.index.count / 3 : geometry.attributes.position.count / 3));
+                        busy = false;
+                    }, onProgress, onError );
+                }
+
+
+                //
+
+                renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setPixelRatio( 1 );
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                container.appendChild( renderer.domElement );
+
+                document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+                //
+
+                document.querySelectorAll('a.model').forEach(function (anchor) {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        loadGeometry(anchor.href);
+                    });
+                });
+
+                //
+
+                loadGeometry('../models/prwm/IWP.le.prwm');
+
+                window.addEventListener( 'resize', onWindowResize, false );
+
+            }
+
+
+            function onWindowResize() {
+
+                windowHalfX = window.innerWidth / 2;
+                windowHalfY = window.innerHeight / 2;
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+            }
+
+            function onDocumentMouseMove( event ) {
+
+                mouseX = ( event.clientX - windowHalfX ) / 1;
+                mouseY = ( event.clientY - windowHalfY ) / 1;
+
+            }
+
+            //
+
+            function animate() {
+
+                requestAnimationFrame( animate );
+                render();
+
+            }
+
+            function render() {
+
+                camera.position.x += ( -mouseX - camera.position.x ) * .01;
+                camera.position.y += (  mouseY - camera.position.y ) * .01;
+
+                camera.lookAt( scene.position );
+
+                renderer.render( scene, camera );
+
+            }
+
+        </script>
+    </body>
 </html>
