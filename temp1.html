@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
+                        <style media="screen">
+
+                          .z1 {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-direction: column;
+
+                          }
+
+
+                          a {
+                            background-color: #000;
+                            display: block;
+                            padding: 1em 0;
+                            text-align: center;
+                            width: 200px;
+                            color: #fff;
+                            margin: 0 1em;
+                            text-decoration: none;
+                          }
+
+                          .scrolling-box {
+                            background-color: #eaeaea;
+                            display: block;
+                            height: 50vh;
+                            overflow:hidden;
+                            scroll-behavior: smooth;
+                            text-align: center;
+                            width: 100%;
+
+                          }
+
+                          .a1 {
+                            width:100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            height: 100%;
+                            margin: auto;
+                            width: 50%;
+                            border: 3px solid green;
+                            padding: 10px;
+                          }
+                          .demo
+                          {
+                            width:400px;
+                            margin:0 auto;
+                            color:#000;
+                            font-family:'Open Sans';
+                            text-align:center;
+                            font-family: out;
+                            height:300px;
+                          }
+                          @font-face
+                          {
+                              font-family: 'out';
+                              src: url('css/Fonts/I AM SHERLOCKED.ttf');
+                          }
+
+
+                        </style>
+  </head>
+  <body>
+    <div class="z1">
+      <div class="scrolling-box a1">
+        <div class="a1" id="1">
+          <div class="a1 demo">
+          </div>
+
+          <a href="#2">2</a>
+        </div>
+        <div class="a1" id="2">This is the second div<br></br>
+          <a href="#3">3</a>
+        </div>
+        <div class="a1" id="3">This is the third div<br></br>
+          <a href="#1">1</a>
+
+        </div>
+      </div>
+    </div>
+
+      <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+      <script src="js/shuffletext.jquery.js"></script>
+      <script>
+      $('.demo').ShuffleText([
+        "Power tends to Corrupt and absolute power corrupts absolutely.",
+        "They see, but not observe.",
+
+        "And ye shall know the truth, and the truth shall make you free.",
+        "Big brother is watching you",
+        "They are angry because the truth you speak contradicts the lie they live.",
+        "Proofs of the new World Order."
+        ],{loop: true, delay: 3000});
+      </script>
+      <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-36251023-1']);
+      _gaq.push(['_setDomainName', 'jqueryscript.net']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </body>
+</html>
