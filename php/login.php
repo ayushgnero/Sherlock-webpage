@@ -3,9 +3,10 @@
 	{
 		$username = filter_input(INPUT_POST, 'username');
 		$password = filter_input(INPUT_POST, 'password');
-		if (Empty($username) or Empty($password ))
+		if (empty($username) or empty($password ))
 		{
 			echo "Username or Password can not be empty";
+			header("Location: ../Project/Sherlock-webpage/Main.html?error=emptyfields");
 			die();
 		}
 		else
@@ -48,7 +49,7 @@
               {
                 define('signup',TRUE);
     						require('header.php');
-    						header("header.php");
+    						header("Location: ../Project/Sherlock-webpage/examples/three-prwm-loader.html");
     						exit();
               }
               else {

@@ -11,7 +11,7 @@
 		}
 		elseif ($password !== $repassword)
 		{
-			header("Location: ..//Project/Sherlock-webpage/register.html?error=invalidusername&=".$username);
+			header("Location: ..//Project/Sherlock-webpage/register.html?error=passwordnotmatch&=".$username);
 			exit();
 		}
 		else
@@ -44,7 +44,7 @@
 					{
 						define('signup',TRUE);
 						require('header.php');
-						header("header.php");
+						header("Location: ../Project/Sherlock-webpage/examples/three-prwm-loader.html");
 						exit();
 					}
 					else
@@ -62,5 +62,4 @@
     header("Location: ../Project/Sherlock-webpage/register.html");
     exit();
   }
-
 ?>
