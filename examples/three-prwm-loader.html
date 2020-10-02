@@ -1,20 +1,22 @@
 <!doctype html>
 <html>
     <head>
+      <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
+
             html, body {
                 padding:0;
                 margin:0;
                 height: 100vh;
                 width: 100%;
-                overflow:hidden;
                 background:#000;
-
+                overflow:hidden;
             }
 
             .notes
             {
-                position:fixed;
+                position:absolute;
             }
 
         	  .asd
@@ -24,6 +26,60 @@
         			width:100%;
         			height:100vh;
             }
+            .scroll
+            {
+              float: left;
+              background-color:rgba(0,0,0,0);
+              margin-left:110%;
+              margin-top:-65%;
+              width:900px;
+              height:50vh;
+              color:white;
+              display: grid;
+              grid-template-columns: 100% auto;
+            }
+
+            .line {
+                  position: relative;
+                  color:white;
+                  top: 100%;
+                  width: 11em;
+                  margin: 10px auto;
+                  border-right: 2px solid rgba(255, 255, 255, 0.75);
+                  font-size: 100%;
+                  text-align: center;
+                  white-space: nowrap;
+                  left:-35%;
+                  margin-top: 95%;
+                  overflow: hidden;transform: translateY(-50%);
+            }
+
+            .anim-typewriter
+            {
+                  animation: typewriter 8s steps(24) 2s 1 normal both,
+                  blinkTextCursor 500ms steps(24) infinite normal;
+                  animation-iteration-count: infinite;
+                  animation-direction: alternate;
+            }
+
+            @keyframes typewriter {
+                  from {
+                        width: 0;
+                  }
+                  to {
+                        width: 11em;
+                  }
+            }
+
+            @keyframes blinkTextCursor {
+                  from {
+                        border-right-color: rgba(255, 255, 255, 0.75);
+                  }
+                  to {
+                        border-right-color: transparent;
+                  }
+            }
+
 
         </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
@@ -31,14 +87,19 @@
     </head>
     <body>
         <img src="../css/Images/kri.png" alt="logo" style="height: 75px; position: absolute; left:2%; top:2%">
+
         <div class="models">
+              <img src="../css/Images/iwplog1.png" alt="logo" style="height: 25%; padding-left: 25%; position: absolute; top: 40%;">
 
-            <img src="../css/Images/iwplog1.png" alt="logo" style="height: 250px; padding-left: 25%; position: absolute; top: 40%;">
-
+        </div>
         </div>
         <div class="notes">
-          
+          <p class="line anim-typewriter">New Adventure Awaits!!! HaveFun!!!</p>
+          <div class="scroll" data-simplebar>
+
+          </div>
         </div>
+        <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
         <script>
 
             var container;
@@ -61,7 +122,7 @@
                 document.body.appendChild( container );
 
                 camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000 );
-                camera.position.z = 850;
+                camera.position.z = 950;
 
                 // scene
 
@@ -173,7 +234,7 @@
 
             function onDocumentMouseMove( event ) {
 
-                mouseX = ( event.clientX - windowHalfX ) / 0.5;
+                mouseX = ( event.clientX - windowHalfX ) / 1;
                 mouseY = ( event.clientY - windowHalfY ) / 1;
 
             }
@@ -189,8 +250,8 @@
 
             function render() {
 
-                camera.position.x += ( -mouseX - camera.position.x ) * .02;
-                camera.position.y += (  mouseY - camera.position.y ) * .02;
+                camera.position.x += ( -mouseX - camera.position.x ) * .01;
+                camera.position.y += (  mouseY - camera.position.y ) * .01;
 
                 camera.lookAt( scene.position );
 
