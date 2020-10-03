@@ -11,7 +11,7 @@
 		}
 		elseif ($password !== $repassword)
 		{
-			header("Location: ..//Project/Sherlock-webpage/register.html?error=passwordnotmatch&=".$username);
+			header("Location: ..//register.html?error=passwordnotmatch&=".$username);
 			exit();
 		}
 		else
@@ -34,7 +34,7 @@
 				$results = mysqli_num_rows($user);
 				if ($results>0)
 				{
-					header("Location: ..//Project/Sherlock-webpage/register.html?error=usernamealreadyexists");
+					header("Location: ../register.html?error=usernamealreadyexists");
 					exit();
 				}
 				else {
@@ -43,8 +43,8 @@
 					if($conn->query($sql))
 					{
 						define('signup',TRUE);
-						require('header.php');
-						header("Location: ../Project/Sherlock-webpage/examples/three-prwm-loader.html");
+						require('../examples/three-prwm-loader.php');
+						header("Location: ../examples/three-prwm-loader.php");
 						exit();
 					}
 					else
@@ -59,7 +59,7 @@
 	}
 	else
   {
-    header("Location: ../Project/Sherlock-webpage/register.html");
+    header("Location: ../register.html");
     exit();
   }
 ?>

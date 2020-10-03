@@ -1,3 +1,9 @@
+#loader {
+  position: relative;
+  z-index: 9999;
+  height: 100vh;
+  width:100%;
+}
 .glitch {
   width: 100vw;
   height: 100vh;

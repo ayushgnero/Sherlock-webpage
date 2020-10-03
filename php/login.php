@@ -6,7 +6,7 @@
 		if (empty($username) or empty($password ))
 		{
 			echo "Username or Password can not be empty";
-			header("Location: ../Project/Sherlock-webpage/Main.html?error=emptyfields");
+			header("Location: ../Main.html?error=emptyfields");
 			die();
 		}
 		else
@@ -29,7 +29,7 @@
           $stmt = mysqli_stmt_init($conn);
           if (!mysqli_stmt_prepare($stmt, $sql))
           {
-            header("Location: ../Project/Sherlock-webpage/Main.html?error=sqlerror");
+            header("Location: ../Main.html?error=sqlerror");
             exit();
           }
           else
@@ -42,24 +42,24 @@
               $pwdcheck = password_verify($password,$row['password']);
               if ($pwdcheck == false)
               {
-                header("Location: ../Project/Sherlock-webpage/Main.html?error=wrongpassword");
+                header("Location: ../Main.html?error=wrongpassword");
                 exit();
               }
               else if ($pwdcheck == true)
               {
                 define('signup',TRUE);
-    						require('header.php');
-    						header("Location: ../Project/Sherlock-webpage/examples/three-prwm-loader.html");
+    						require('../examples/three-prwm-loader.php');
+    						header("Location: ../examples/three-prwm-loader.php");
     						exit();
               }
               else {
-                header("Location: ../Project/Sherlock-webpage/Main.html?error=sqlerror");
+                header("Location: ../Main.html?error=sqlerror");
                 exit();
               }
             }
             else
             {
-              header("Location: ../Project/Sherlock-webpage/Main.html?error=nouser");
+              header("Location: ../Main.html?error=nouser");
               exit();
             }
           }
@@ -68,7 +68,7 @@
 	}
 	else
   {
-    header("Location: ../Project/Sherlock-webpage/Main.html");
+    header("Location: ../Main.html");
     exit();
   }
 

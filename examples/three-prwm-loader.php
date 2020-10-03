@@ -1,10 +1,17 @@
+<?php
+if(!defined('signup'))
+{
+  header("Location: ../Main.html");
+  exit();
+}
+?>
 <!doctype html>
 <html>
     <head>
       <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
-
+            @import url('https://fonts.googleapis.com/css2?family=David+Libre&family=Special+Elite&display=swap');
             html, body {
                 padding:0;
                 margin:0;
@@ -17,6 +24,7 @@
             .notes
             {
                 position:absolute;
+                animation-delay: 0.5s;
             }
 
         	  .asd
@@ -35,6 +43,7 @@
               width:900px;
               height:50vh;
               color:white;
+              overflow: hidden;
               display: grid;
               grid-template-columns: 100% auto;
             }
@@ -80,7 +89,89 @@
                   }
             }
 
+            .a1
+            {
+              height:50vh;
+            }
+            .demo
+            {
+              width:60%;
+              margin-top:15%;
+              margin-left: 10%
+              color:#fff;
+              font-family:'Open Sans';
+              font-size: 24px;
+              padding-left: 15px;
+              font-family: out;
+            }
+            @font-face
+            {
+                font-family: 'out';
+                src: url('../css/Fonts/I AM SHERLOCKED.ttf');
+            }
+            .shuffle
+            {
+              position: absolute;
+              cursor: pointer;
+              height: auto;
+            }
 
+            .shuffle.is-main
+            {
+              font-size: 40px;
+            }
+
+            .shuffle.completed
+            {
+              animation: blink 1s linear 0s 1 alternate;
+            }
+
+            @keyframes blink
+            {
+              0% {
+                color: #fff;
+                text-shadow: 0 0 1rem #fff;
+              }
+            }
+            p
+            {
+              margin: 2rem 0;
+            }
+            .z2
+            {
+              margin-top:10%;
+              width: 800px;
+            }
+            .a2 {
+              margin-top: 20%;
+              color: #fff;
+              text-decoration: none;
+              letter-spacing: 0.15em;
+
+              display: inline-block;
+              padding: 15px 20px;
+              position: relative;
+            }
+            .a2:after {
+              background: none repeat scroll 0 0 transparent;
+              bottom: 0;
+              content: "";
+              display: block;
+              height: 2px;
+              left: 50%;
+              position: absolute;
+              background: #fff;
+              transition: width 0.3s ease 0s, left 0.3s ease 0s;
+              width: 0;
+            }
+            .a2:hover:after {
+              width: 80%;
+              left: 10%;
+            }
+            .a3
+            {
+              margin-top: 7%;
+            }
         </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
         <script src="../implementations/three-prwm-loader/PRWMLoader.js"></script>
@@ -97,8 +188,48 @@
           <p class="line anim-typewriter">New Adventure Awaits!!! HaveFun!!!</p>
           <div class="scroll" data-simplebar>
 
+              <div id="one" class="a1">
+                <a href="#two" onclick="myFunction()"><img src="../css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+
+                <div class="demo shuffle">
+                </div>
+
+              </div>
+
+              <hr>
+
+              <div id="two" class="a1">
+                <a href="#three" onclick="myFunction()"><img src="../css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Conspiracy Theory</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Search From a selection of conspiracy Theories. Post new ones to the wall for easier access.</span></p>
+                  <a class="a2 shuffle" href="">Go to Conspiracy Theory</a></h2>
+                </div>
+
+              </div>
+              <div id="three" class="a1">
+                <a href="#four" onclick="myFunction()"><img src="../css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Geolocations</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Find out more about the incidents and where they happend using the 3D Geo-Locator.</span></p>
+                  <a class="a2 shuffle" href="../Geolocation.html">Go to Geolocations</a></h2>
+                </div>
+
+              </div>
+              <div id="four" class="a1">
+                <a href="#one" onclick="myFunction()"><img src="../css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Deductions</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Clips of some of the best Deductions that we have seen in the entertainment industry.</span></p>
+                  <a class="a2 shuffle" href="">Go to Deductions</a></h2>
+                </div>
+
+              </div>
+
+              <hr>
           </div>
         </div>
+
         <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
         <script>
 
@@ -260,5 +391,89 @@
             }
 
         </script>
+
+        <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="../js/shuffletext.jquery.js"></script>
+        <script>
+        $('.demo').ShuffleText([
+          "Power tends to Corrupt and absolute power corrupts absolutely.",
+          "They see, but not observe.",
+
+          "And ye shall know the truth, and the truth shall make you free.",
+          "Big brother is watching you",
+          "They are angry because the truth you speak contradicts the lie they live.",
+          "Proofs of the new World Order."
+          ],{loop: true, delay: 3000});
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js" charset="utf-8"></script>
+
+        <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js" charset="utf-8"></script>
+      <script type="text/javascript">
+      function myFunction() {
+              const random_char = () => {
+          const possible = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~" +
+                "0123456789" +
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+                "abcdefghijklmnopqrstuvwxyz";
+          return possible.charAt(Math.floor(Math.random() * possible.length));
+          };
+
+          const mask = (chars, progress) => {
+          const masked = [];
+
+          for (let i = 0; i < chars.length; i++) {
+            const position = (i + 1) / chars.length;
+            if (position > progress) {
+              masked.push(random_char());
+            } else {
+              masked.push(chars[i]);
+            }
+          }
+
+          return masked.join('');
+          };
+
+          const shuffle = el => {
+          const chars = el.textContent.split('');
+
+          const params = {
+            progress: 0
+          };
+
+          const a = anime({
+            targets: params,
+            progress: 1,
+            delay: 1000,
+            duration: 1000,
+            easing: 'easeInQuad',
+            update: () => {
+              el.textContent = mask(chars, params.progress);
+            },
+            complete: () => {
+              el.classList.add('completed');
+            }
+          });
+          };
+
+          for (const el of document.querySelectorAll('.shuffle')) {
+          shuffle(el);
+          }
+        }
+
+      </script>
     </body>
 </html>

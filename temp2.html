@@ -11,19 +11,25 @@
     </style>
   </head>
   <body>
-
-    <div id="one">
-      <div class="a1 demo">
-      </div>
-      <a href="#two">Two</a>
+<div class="">
+  <div id="one">
+    <div class="a1 demo">
     </div>
+    <a href="#two">Two</a>
+  </div>
+
+  <hr>
+
+  <div id="two">Second Element<a href="#three">One</a></div>
+
+
+   <hr>
+   <div id="three">Second Element<a href="#one">One</a></div>
 
     <hr>
+</div>
 
-    <div id="two">Second Element<a href="#one">One</a></div>
-
-	   <hr>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" ></script>
   <script type="text/javascript">
       $("a[href^='#']").click(function(e) {
   	e.preventDefault();

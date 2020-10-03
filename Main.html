@@ -247,10 +247,15 @@ body
 </div>
 
 <script>
-var myVar;
+var myVar = document.getElementById('loader');
 
 function myFunction() {
-  myVar = setTimeout(showPage, 4000);
+  myVar = setTimeout(showPage, 2000);
+   if (true) {
+
+  }
+  // myVar.style.display='none';
+  // document.getElementById("myDiv").style.display = "block";
 }
 
 function showPage() {
