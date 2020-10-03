@@ -425,10 +425,9 @@ if(!defined('signup'))
       <script type="text/javascript">
       function myFunction() {
               const random_char = () => {
-          const possible = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~" +
-                "0123456789" +
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
-                "abcdefghijklmnopqrstuvwxyz";
+          const possible = "!\"#$%&@[\\]^_`{|}~" +
+                "0129" +
+                "ABCDEFPQRSTUVWXYZ"
           return possible.charAt(Math.floor(Math.random() * possible.length));
           };
 
@@ -457,8 +456,8 @@ if(!defined('signup'))
           const a = anime({
             targets: params,
             progress: 1,
-            delay: 1000,
-            duration: 1000,
+            delay: 500,
+            duration: 500,
             easing: 'easeInQuad',
             update: () => {
               el.textContent = mask(chars, params.progress);

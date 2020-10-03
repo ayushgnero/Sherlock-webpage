@@ -9,10 +9,39 @@
           width: 100%;
           margin: 0;
           padding: 0;
-          background: black;
+          background-color: black;
 
         }
+        .a1
+        {
+          height:50vh;
+        }
+        .a2 {
+          margin-top: 20%;
+          color: #fff;
+          text-decoration: none;
+          letter-spacing: 0.15em;
 
+          display: inline-block;
+          padding: 15px 20px;
+          position: relative;
+        }
+        .a2:after {
+          background: none repeat scroll 0 0 transparent;
+          bottom: 0;
+          content: "";
+          display: block;
+          height: 2px;
+          left: 50%;
+          position: absolute;
+          background: #fff;
+          transition: width 0.3s ease 0s, left 0.3s ease 0s;
+          width: 0;
+        }
+        .a2:hover:after {
+          width: 80%;
+          left: 10%;
+        }
         header {
 
           position: absolute;
@@ -26,8 +55,9 @@
         }
 
         #globalArea {
-          float:right;
-          height: 80%;
+          margin-left: 40%;
+          height: 100%;
+          float: right;
           width: 60%;
           margin: 0;
           padding: 0;
@@ -36,33 +66,91 @@
         a {
         color: #ff0000;
         }
-        .a1
+        .shuffle
         {
-          height: 100vh;
-          width:40%;
-          float:left;
-          background-color: white;
-
+          position: absolute;
+          cursor: pointer;
+          height: auto;
         }
-
+        .shuffle.is-main
+        {
+          font-size: 40px;
+        }
+        .a3
+        {
+          margin-top: 7%;
+        }
+        .scroll
+        {
+          float: left;
+          background-color:rgba(0,0,0,0);
+          margin-top:-75%;
+          width:900px;
+          height:50vh;
+          color:white;
+          display: grid;
+          grid-template-columns: 100% auto;
+        }
     </style>
+  <!-- This demo shows how to use opensource library Gio.js to create an interactive 3D globe -->
+  <!-- Know more fancier usage of Gio.js, see:
+       official website: http://giojs.org
+       github repo: https://github.com/syt123450/giojs
+-->
+<!--  For more interesting Giojs demo, see Giojs API Codepen Collection: https://codepen.io/collection/DkBobG/  -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://threejs.org/build/three.min.js"></script>
   <script src="https://raw.githack.com/syt123450/giojs/master/build/gio.min.js"></script>
+  <!-- load data in this data script -->
   <script src="https://raw.githack.com/syt123450/giojs/master/assets/data/sampleData.js"></script>
 </head>
 <body>
-  <div class="a1">
-  </div>
-  <div id="globalArea"></div>
+
+<!--Create a <div> where the globe will be rendered -->
+<div id="globalArea"></div>
+<div class="scroll" data-simplebar>
+
+
+    <div id="two" class="a1">
+      <a href="#three" onclick="myFunction()"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+      <div class="z2 a1" >
+        <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Conspiracy Theory</span></p>
+        <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Search From a selection of conspiracy Theories. Post new ones to the wall for easier access.</span></p>
+
+      </div>
+
+    </div>
+    <div id="three" class="a1">
+      <a href="#four" onclick="myFunction()"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+      <div class="z2 a1" >
+        <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Geolocations</span></p>
+        <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Find out more about the incidents and where they happend using the 3D Geo-Locator.</span></p>
+      </div>
+
+    </div>
+    <div id="four" class="a1">
+      <a href="#two" onclick="myFunction()"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+      <div class="z2 a1" >
+        <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Deductions</span></p>
+        <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Clips of some of the best Deductions that we have seen in the entertainment industry.</span></p>
+
+      </div>
+
+    </div>
+
+    <hr>
+</div>
   <script type="text/javascript">
+  // Get the container to hold the IO globe
 var container = document.getElementById( "globalArea" );
+// Create Gio.controller
 var controller = new GIO.Controller( container );
+// Add data
 controller.configure({
   control: {
 		stats: false,
 		disableUnmentioned: false,
-		lightenMentioned: true,
+		lightenMentioned: false,
 		inOnly: false,
 		outOnly: false,
 		initCountry: "IN",
@@ -77,15 +165,64 @@ controller.configure({
     in: 16777215,
     out: 14869218,
     halo: 16711680
-  },
-  brightness: {
-		ocean: 0,
-		mentioned: 0,
-		related: 0
-	}
+  }
 });
 controller.addData( data );
+// Initialize and render the globe
 controller.init();
+
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  function myFunction() {
+          const random_char = () => {
+      const possible = "!\"#$%&@[\\]^_`{|}~" +
+            "0129" +
+            "ABCDEFPQRSTUVWXYZ"
+      return possible.charAt(Math.floor(Math.random() * possible.length));
+      };
+
+      const mask = (chars, progress) => {
+      const masked = [];
+
+      for (let i = 0; i < chars.length; i++) {
+        const position = (i + 1) / chars.length;
+        if (position > progress) {
+          masked.push(random_char());
+        } else {
+          masked.push(chars[i]);
+        }
+      }
+
+      return masked.join('');
+      };
+
+      const shuffle = el => {
+      const chars = el.textContent.split('');
+
+      const params = {
+        progress: 0
+      };
+
+      const a = anime({
+        targets: params,
+        progress: 1,
+        delay: 500,
+        duration: 500,
+        easing: 'easeInQuad',
+        update: () => {
+          el.textContent = mask(chars, params.progress);
+        },
+        complete: () => {
+          el.classList.add('completed');
+        }
+      });
+      };
+
+      for (const el of document.querySelectorAll('.shuffle')) {
+      shuffle(el);
+      }
+    }
 
   </script>
 
