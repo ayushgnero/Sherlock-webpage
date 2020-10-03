@@ -44,7 +44,7 @@
 					{
 						define('signup',TRUE);
 						require('../examples/three-prwm-loader.php');
-						header("Location: ../examples/three-prwm-loader.php");
+						header("Location: ../home.php");
 						exit();
 					}
 					else
