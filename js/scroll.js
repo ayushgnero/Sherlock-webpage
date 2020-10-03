@@ -1,7 +1,4 @@
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" charset="utf-8"></script>
-<script type="text/javascript">
-
-    jQuery(function($) {
+jQuery(function($) {
 
       var doAnimations = function() {
 
@@ -24,4 +21,3 @@
       $(window).trigger('scroll');
 
     });
-</script>
