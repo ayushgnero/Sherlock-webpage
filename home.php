@@ -203,7 +203,7 @@ if(!defined('signup'))
                 <div class="z2 a1" >
                   <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Conspiracy Theory</span></p>
                   <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Search From a selection of conspiracy Theories. Post new ones to the wall for easier access.</span></p>
-                  <a class="a2 shuffle" href="">Go to Conspiracy Theory</a></h2>
+                  <a class="a2 shuffle" href="Geolocation.html">Go to Conspiracy Theory</a></h2>
                 </div>
 
               </div>
@@ -212,7 +212,7 @@ if(!defined('signup'))
                 <div class="z2 a1" >
                   <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Geolocations</span></p>
                   <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Find out more about the incidents and where they happend using the 3D Geo-Locator.</span></p>
-                  <a class="a2 shuffle" href="Geolocation.html">Go to Geolocations</a></h2>
+                  <a class="a2 shuffle" href="map.html">Go to Geolocations</a></h2>
                 </div>
 
               </div>
