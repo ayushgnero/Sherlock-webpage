@@ -48,8 +48,7 @@
               else if ($pwdcheck == true)
               {
                 define('signup',TRUE);
-    						require('../examples/three-prwm-loader.php');
-    						header("Location: ../home.php");
+    						header("Location: ../home.html");
     						exit();
               }
               else {

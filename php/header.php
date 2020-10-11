@@ -1,7 +1,7 @@
 <?php
 if(!defined('signup'))
 {
-  header("Location: ../Main.html");
+  header("Location: ../home.php");
   exit();
 }
 ?>

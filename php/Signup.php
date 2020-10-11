@@ -43,8 +43,7 @@
 					if($conn->query($sql))
 					{
 						define('signup',TRUE);
-						require('../examples/three-prwm-loader.php');
-						header("Location: ../home.php");
+						header("Location: ../home.html");
 						exit();
 					}
 					else
