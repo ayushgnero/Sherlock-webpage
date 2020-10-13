@@ -11,7 +11,7 @@
 		}
 		elseif ($password !== $repassword)
 		{
-			header("Location: ..//Project/Sherlock-webpage/register.html?error=invalidusername&=".$username);
+			header("Location: ..//register.html?error=passwordnotmatch&=".$username);
 			exit();
 		}
 		else
@@ -19,7 +19,7 @@
 			$host = "localhost";
 			$dbuser = "root";
 			$dbpass = "";
-			$dbname = "iwp";
+			$dbname = "max";
 
 			$conn = new mysqli($host,$dbuser, $dbpass, $dbname);
 
@@ -30,28 +30,35 @@
 			}
 			else
 			{
-				$hashcode = password_hash($password, PASSWORD_BCRYPT);
-				$sql = "INSERT INTO iwp (username, password) values ('$username','$hashcode')";
-				if($conn->query($sql))
+				$user = mysqli_query($conn,"SELECT username FROM iwp WHERE username='$username'");
+				$results = mysqli_num_rows($user);
+				if ($results>0)
 				{
-					define('signup',TRUE);
-					require('header.php');
-					header("header.php");
+					header("Location: ../register.html?error=usernamealreadyexists");
 					exit();
 				}
-				else
-				{
-					echo "Error: ". $sql ."
-					". $conn->error;
+				else {
+					$hashcode = password_hash($password, PASSWORD_DEFAULT);
+					$sql = "INSERT INTO iwp (username, password) values ('$username','$hashcode')";
+					if($conn->query($sql))
+					{
+						define('signup',TRUE);
+						header("Location: ../home.html");
+						exit();
+					}
+					else
+					{
+						echo "Error: ". $sql ."
+						". $conn->error;
+					}
+					$conn->close();
 				}
-				$conn->close();
 			}
 		}
 	}
 	else
   {
-    header("Location: ../Project/Sherlock-webpage/register.html");
+    header("Location: ../register.html");
     exit();
   }
-
 ?>

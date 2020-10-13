@@ -1,0 +1,372 @@
+<?php
+if(!defined('signup'))
+{
+  header("Location: Main.html");
+  exit();
+}
+?>
+<!doctype html>
+<html>
+    <head>
+      <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://threejs.org/build/three.min.js"></script>
+    <script src="https://raw.githack.com/syt123450/giojs/master/build/gio.min.js"></script>
+
+    <script src="https://raw.githack.com/syt123450/giojs/master/assets/data/sampleData.js"></script>
+    <link rel="stylesheet" href="css/gio.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=David+Libre&family=Special+Elite&display=swap');
+            html, body {
+                padding:0;
+                margin:0;
+                height: 100vh;
+                width: 100%;
+                background:#000;
+                overflow:hidden;
+            }
+
+            .notes
+            {
+                position:absolute;
+                animation-delay: 0.5s;
+            }
+
+        	  .asd
+        		{
+        			background color:rgba(0,0,0,0.1);
+        			opacity:30%;
+        			width:100%;
+        			height:100vh;
+            }
+            .scroll
+            {
+              float: left;
+              background-color:rgba(0,0,0,0);
+              margin-left:110%;
+              margin-top:-65%;
+              width:900px;
+              height:50vh;
+              color:white;
+              overflow: hidden;
+              display: grid;
+              grid-template-columns: 100% auto;
+            }
+
+            .line {
+                  position: relative;
+                  color:white;
+                  top: 100%;
+                  width: 11em;
+                  margin: 10px auto;
+                  border-right: 2px solid rgba(255, 255, 255, 0.75);
+                  font-size: 100%;
+                  text-align: center;
+                  white-space: nowrap;
+                  left:-35%;
+                  margin-top: 95%;
+                  overflow: hidden;transform: translateY(-50%);
+            }
+
+            .anim-typewriter
+            {
+                  animation: typewriter 8s steps(24) 2s 1 normal both,
+                  blinkTextCursor 500ms steps(24) infinite normal;
+                  animation-iteration-count: infinite;
+                  animation-direction: alternate;
+            }
+
+            @keyframes typewriter {
+                  from {
+                        width: 0;
+                  }
+                  to {
+                        width: 11em;
+                  }
+            }
+
+            @keyframes blinkTextCursor {
+                  from {
+                        border-right-color: rgba(255, 255, 255, 0.75);
+                  }
+                  to {
+                        border-right-color: transparent;
+                  }
+            }
+
+            .a1
+            {
+              height:53vh;
+            }
+            .demo
+            {
+              width:60%;
+              margin-top:13%;
+              margin-left: 10%
+              color:#fff;
+              font-family:'Open Sans';
+              font-size: 24px;
+              padding-left: 15px;
+              font-family: out;
+            }
+            @font-face
+            {
+                font-family: 'out';
+                src: url('css/Fonts/I AM SHERLOCKED.ttf');
+            }
+            .shuffle
+            {
+              position: absolute;
+              cursor: pointer;
+              height: auto;
+            }
+
+            .shuffle.is-main
+            {
+              font-size: 40px;
+            }
+
+            .shuffle.completed
+            {
+              animation: blink 1s linear 0s 1 alternate;
+            }
+
+            @keyframes blink
+            {
+              0% {
+                color: #fff;
+                text-shadow: 0 0 1rem #fff;
+              }
+            }
+            p
+            {
+              margin: 2rem 0;
+            }
+            .z2
+            {
+              margin-top:10%;
+              width: 800px;
+            }
+            .a2 {
+              margin-top: 37%;
+              color: #fff;
+              text-decoration: none;
+              letter-spacing: 0.15em;
+
+              display: inline-block;
+              padding: 15px 20px;
+              position: relative;
+            }
+            .a2:after {
+              background: none repeat scroll 0 0 transparent;
+              bottom: 0;
+              content: "";
+              display: block;
+              height: 2px;
+              left: 50%;
+              position: absolute;
+              background: #fff;
+              transition: width 0.3s ease 0s, left 0.3s ease 0s;
+              width: 0;
+            }
+            .a2:hover:after {
+              width: 80%;
+              left: 10%;
+            }
+            .a3
+            {
+              margin-top: 7%;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
+        <script src="implementations/three-prwm-loader/PRWMLoader.js"></script>
+        <script type="text/javascript">
+          var a = "IN";
+          var b = "US";
+          var c = "CN";
+          var d = "AU";
+          var e = "DE";
+          var f = "ES";
+          var g = "FR";
+          var h = "IT";
+        </script>
+    </head>
+    <body onload="gio(e)">
+        <div id="globalArea"></div>
+        <a href="home.html"><img src="css/Images/kri.png" alt="logo" style="height: 75px; position: absolute; left:2%; top:2%;z-index:99999;"></a>
+
+        <div class="models">
+
+
+        </div>
+
+        </div>
+        <div class="notes">
+          <p class="line anim-typewriter">New Messages</p>
+          <div class="scroll" data-simplebar>
+
+              <div id="one" class="a1">
+                <a href="#two" onclick="myFunction(); gio(b)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Illuminatus</span></p>
+                <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Comprising The Eye in the Pyramid, The Golden Apple and Leviathan, this is the cult-fiction motherlode of postmodern conspiracy theory fiction. The authors were associate editors at Playboy and claimed to have been inspired by the letters they received from readers, filled with bizarre plots and paranoid rants. Taking these theories as truth, Shea and Wilson wrote a novel that playfully combines a range of conspiracies – particularly around the Illuminati – in a wacky intertextual collage of countercultural mayhem, including its own religion: Discordianism. </span></p>
+                <a class="a2 shuffle" href="">Go to Conspiracy Theory</a></h2>
+              </div>
+
+              <hr>
+
+              <div id="two" class="a1">
+                <a href="#three" onclick="myFunction(); gio(b)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Libra</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">The image of heat and light is woven through DeLillo’s fictional account of JFK’s assassination, standing for the sheer volume of material about the event, the overwhelming, dazzling accumulation of information. At one point a character asks: “What are they holding back? How much more is there?” still searching for that final detail that will explain what happened. DeLillo’s novel dramatises the extent to which a surplus of information does not always lead to clarity or understanding. </span></p>
+                  <a class="a2 shuffle" href="">Go to Conspiracy Theory</a></h2>
+                </div>
+
+              </div>
+              <div id="three" class="a1">
+                <a href="#four" onclick="myFunction(); gio(b)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Crying of Lot 49</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">What if an occult conflict between two rival mail distribution companies was the key to understanding US history? A secretive postal system – the Tristero, with mailboxes disguised as rubbish bins that display the mysterious slogan W.A.S.T.E (We Await Silent Tristero’s Empire), is a pervasive presence in this short novel. But does it even exist, or is it all a figment of Oedipa Maas’s fevered imagination as she tries to execute the will of a former lover amid the pop cultural wasteland of southern California?</span></p>
+                  <a class="a2 shuffle" href="Geolocation.html">Go to Geolocations</a></h2>
+                </div>
+
+              </div>
+              <div id="four" class="a1">
+                <a href="#five" onclick="myFunction(); gio(e)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Mumbo Jumbo</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">In Reed’s postmodern voodoo fable, the Wallflower Order is an international conspiracy seeking control and order. It fights to suppress the “Jes Grew” virus, a feverish dance of jazz and freedom spread by certain black artists (“Jes Grew that touched John Coltrane’s tenor; that tinged the voice of Otis Redding”). Reed rewrites and undercuts Judeo-Christian mythology by drawing on Voodoo traditions and Afrocentric mythology to produce a hybrid tapestry of alternate history and spoof mythology.</span></p>
+                  <a class="a2 shuffle" href="">Go to Deductions</a></h2>
+                </div>
+
+              </div>
+              <div id="five" class="a1">
+                <a href="#six" onclick="myFunction(); gio(b)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Trial</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Josef K never finds out why the agents have come to arrest him or what it is he is supposed to have done wrong, and neither does the reader. The opaque nature of the conspiracy against K, and his futile efforts to make sense of the situation, point to a faceless world of bureaucratic terror and anticipate the unreal yet oppressive nature of many totalitarian regimes.</span></p>
+                  <a class="a2 shuffle" href="">Go to Deductions</a></h2>
+                </div>
+              <div id="six" class="a1">
+                <a href="#seven" onclick="myFunction(); gio(h)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Plot Against America</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">A strong-man celebrity, Charles Lindbergh, becomes president of the US. Backed by shadowy foreign powers and sympathetic towards Hitler, Lindbergh begins to introduce antisemitic policies. For a moment it looks as if the country might be about to ally itself with the Nazis. However, Roth wraps up his alternative history with a neat resolution and the normal course of events is restored. Something like this could never happen in real life, could it? </span></p>
+                  <a class="a2 shuffle" href="">Go to Deductions</a></h2>
+                </div>
+
+              </div>
+              <div id="seven" class="a1">
+                <a href="#eight" onclick="myFunction(); gio(f)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Book of Daniel</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">In 1953, Julius and Ethel Rosenberg were executed after being found guilty of disclosing nuclear weapons designs to the USSR. The fraught case did much to stoke fears of Soviet infiltration during the darkest days of the cold war. Doctorow’s novel is a fictional retelling of the case from the point of view of their oldest child, who researches what happened to his parents while studying for his PhD. The novel plays out against a backdrop of anti-Vietnam war protests as Doctorow makes a wry comment on the nature and possibility of dissent in the US.</span></p>
+                  <a class="a2 shuffle" href="">Go to Deductions</a></h2>
+                </div>
+
+              </div>
+              <div id="eight" class="a1">
+                <a href="#nine" onclick="myFunction(); gio(d)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">2666</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">It’s impossible to summarise the range and complexity of Bolaño’s 900-page masterpiece, but at its core are the unsolved murders of hundreds of women in the Mexican city of Santa Teresa. The failure of the authorities to solve these crimes seems connected, somehow, to the fictional German writer Benno Von Archimboldi, who is eventually traced by a team of scholars back to the same city. Dense, enigmatic and polyvocal, 2666 blends fact with fiction and documentary with invention to comment on the fraught and murderous nature of Mexican-American history.</span></p>
+                  <a class="a2 shuffle" href="">Go to Deductions</a></h2>
+                </div>
+
+              </div>
+              <div id="nine" class="a1">
+                <a href="#ten" onclick="myFunction(); gio(g)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; "> Vida</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">The turn from anti-war and pro-environmental activism in the 60s to more violent anti-state actions in the late 70s is the subject of Piercy’s sixth novel. Partly inspired by the Weathermen, the novel tells the story of Vida as she struggles to maintain a double life, between clandestine anti-state actions and superficial legitimacy. Again, the paranoid and conspiratorial texture of contemporary US society forms the backdrop as the novel, highlighting the contrast between 60s idealism and the darker turn taken in the 70s. </span></p>
+                  <a class="a2 shuffle" href="">Go to Deductions</a></h2>
+                </div>
+
+              </div>
+              <div id="ten" class="a1">
+                <a href="#eleven" onclick="myFunction(); gio(b)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Foucaults Pendulum</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Eco’s fiendishly complex novel presents us with a mind-boggling array of esoteric conspiracies, from the Freemasons and the Bavarian Illuminati to Opus Dei. The novel concerns a spoof conspiracy theory, “the Plan”, created by three publishers who find their invention has gained a mysterious life of its own. Like Dan Brown in The Da Vinci Code, the novel draws on the Rennes-le-Château mythologies about the Ark of the Covenant. But Eco’s treatment is vastly more sophisticated, showing how such conspiracy theories can seduce the sceptical and credulous alike. </span></p>
+                  <a class="a2 shuffle" href="">Go to Deductions</a></h2>
+                </div>
+
+              </div>
+              <div id="eleven" class="a1">
+                <a href="#one" onclick="myFunction(); gio(e)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
+                <div class="z2 a1" >
+                  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">JFK Assassination</span></p>
+                  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">The assassination of John F. Kennedy, the subsequent murder of prime suspect Lee Harvey Oswald by night club owner Jack Ruby have spurred numerous conspiracy theories.[1][2][3] These include alleged involvement of the CIA, the Mafia, Vice President Lyndon B. Johnson, Cuban Prime Minister Fidel Castro, the KGB, or some combination of these entities. The original FBI investigation and Warren Commission report, as well as an alleged "benign CIA cover-up". </span></p>
+                  <a class="a2 shuffle" href="map.html">Go to Deductions</a></h2>
+                </div>
+
+              </div>
+
+              <hr>
+          </div>
+        </div>
+        </div>
+
+        <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+
+        <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="js/shuffletext.jquery.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js" charset="utf-8"></script>
+      <script type="text/javascript">
+      function myFunction() {
+              const random_char = () => {
+          const possible = "!\"#$%&@[\\]^_`{|}~" +
+                "0129" +
+                "ABCDEFPQRSTUVWXYZ"
+          return possible.charAt(Math.floor(Math.random() * possible.length));
+          };
+
+          const mask = (chars, progress) => {
+          const masked = [];
+
+          for (let i = 0; i < chars.length; i++) {
+            const position = (i + 1) / chars.length;
+            if (position > progress) {
+              masked.push(random_char());
+            } else {
+              masked.push(chars[i]);
+            }
+          }
+
+          return masked.join('');
+          };
+
+          const shuffle = el => {
+          const chars = el.textContent.split('');
+
+          const params = {
+            progress: 0
+          };
+
+          const a = anime({
+            targets: params,
+            progress: 1,
+            delay: 500,
+            duration: 500,
+            easing: 'easeInQuad',
+            update: () => {
+              el.textContent = mask(chars, params.progress);
+            },
+            complete: () => {
+              el.classList.add('completed');
+            }
+          });
+          };
+
+          for (const el of document.querySelectorAll('.shuffle')) {
+          shuffle(el);
+          }
+        }
+
+      </script>
+      <script src="js/gio.js" charset="utf-8"></script>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      hr
+      {
+        	height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+<div class="">
+  <div id="one">
+    <div class="a1 demo">
+    </div>
+    <a href="#two">Two</a>
+  </div>
+
+  <hr>
+
+  <div id="two">Second Element<a href="#three">One</a></div>
+
+
+   <hr>
+   <div id="three">Second Element<a href="#one">One</a></div>
+
+    <hr>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" ></script>
+  <script type="text/javascript">
+      $("a[href^='#']").click(function(e) {
+  	e.preventDefault();
+
+  	var position = $($(this).attr("href")).offset().top;
+
+  	$("body, html").animate({
+  		scrollTop: position
+  	} /* speed */ );
+  });
+  </script>
+  
+  </body>
+</html>
