@@ -1,88 +1,168 @@
-<div id="one" class="a1">
-  <a href="#two" onclick="myFunction(); gio(b)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Illuminatus</span></p>
-  <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Comprising The Eye in the Pyramid, The Golden Apple and Leviathan, this is the cult-fiction motherlode of postmodern conspiracy theory fiction. The authors were associate editors at Playboy and claimed to have been inspired by the letters they received from readers, filled with bizarre plots and paranoid rants. Taking these theories as truth, Shea and Wilson wrote a novel that playfully combines a range of conspiracies – particularly around the Illuminati – in a wacky intertextual collage of countercultural mayhem, including its own religion: Discordianism. </span></p>
-  <a class="a2 shuffle" href="">Go to Conspiracy Theory</a></h2>
-</div>
+  <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.9/leaflet.draw.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.9/leaflet.draw.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <style media="screen">
+      body {
+        margin:0;
+        padding:0;
+        background:black;
+      }
+#map{
+  height:100vh;
+  width:100%;
 
-<hr>
+}
+#export {
+            top:90px;
+        }
+    </style>
+  </head>
+  <body>
+    <a href='#' id='export'>Export Features</a>
+    <div id="map" style="width: 100%; height: 100vh; border: 1px solid #ccc"></div>
+    <script src="https://unpkg.com/leaflet-draw@0.4.1/dist/leaflet.draw.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      // var map = L.map('map', { attributionControl:false }).setView([32.779167, -96.808611], 20  );
+      //
+      // L.tileLayer('https://api.mapbox.com/styles/v1/maximusjordan/ckfvxxppr5h4019nruya3hgh5/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWF4aW11c2pvcmRhbiIsImEiOiJjanZmM3Bsd3IwY2g0NDBzM3A0MXVudm81In0.kKgFoSRwncHdfLR1SA8kpA', {
+      // }).addTo(map);
+      // var editableLayers = new L.FeatureGroup();
+      // map.addLayer(editableLayers);
+      //
+      // var geojsonFeature = "https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json";
+      //
+      // var jsonLayer = new L.geoJson().addTo(map);
+      //
+      // $.ajax({
+      //  dataType: "json",
+      //  url: geojsonFeature,
+      //  success: function(data) {
+      //      $(data.features).each(function(key, data) {
+      //          jsonLayer.addData(data);
+      //      });
+      //  }
+      // });
+      //
+      // var options = {
+      //  position: 'topright',
+      //  draw: {
+      //    polyline: true,
+      //    polygon: {
+      //      allowIntersection: false, // Restricts shapes to simple polygons
+      //      drawError: {
+      //        color: '#e1e100', // Color the shape will turn when intersects
+      //        message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
+      //      }
+      //    },
+      //    circle: true, // Turns off this drawing tool
+      //    rectangle: true,
+      //    marker: true
+      //  },
+      //  edit: {
+      //    featureGroup: editableLayers, //REQUIRED!!
+      //    remove: true
+      //  }
+      // };
+      //
+      // var drawControl = new L.Control.Draw(options);
+      // map.addControl(drawControl);
+      //
+      //
+      // map.on(L.Draw.Event.CREATED, function(e) {
+      //  var type = e.layerType,
+      //    layer = e.layer;
+      //
+      //  if (type === 'marker') {
+      //    layer.bindPopup('A popup!');
+      //  }
+      //
+      //  editableLayers.addLayer(layer);
+      //});
+      var osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    osm = L.tileLayer(osmUrl, {
+      maxZoom: 18,
+      attribution: osmAttrib
+    });
+  map = new L.Map('map', {
 
-<div id="two" class="a1">
-  <a href="#three" onclick="myFunction(); gio(c)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <div class="z2 a1" >
-    <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Libra</span></p>
-    <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">The image of heat and light is woven through DeLillo’s fictional account of JFK’s assassination, standing for the sheer volume of material about the event, the overwhelming, dazzling accumulation of information. At one point a character asks: “What are they holding back? How much more is there?” still searching for that final detail that will explain what happened. DeLillo’s novel dramatises the extent to which a surplus of information does not always lead to clarity or understanding. </span></p>
-    <a class="a2 shuffle" href="">Go to Conspiracy Theory</a></h2>
-  </div>
+      attributionControl: false,
+      center: new L.LatLng(51.505, -0.04),
+      zoom: 13
+    }),
+    drawingLayer = L.featureGroup().addTo(map);
+  L.control.layers({
+    "Custom": L.tileLayer('https://api.mapbox.com/styles/v1/maximusjordan/ckfvxxppr5h4019nruya3hgh5/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWF4aW11c2pvcmRhbiIsImEiOiJjanZmM3Bsd3IwY2g0NDBzM3A0MXVudm81In0.kKgFoSRwncHdfLR1SA8kpA', {
+    }).addTo(map),
+  }, {
+    'drawlayer': drawingLayer
+  }, {
+    position: 'topleft',
+    collapsed: false
+  }).addTo(map);
 
-</div>
-<div id="three" class="a1">
-  <a href="#four" onclick="myFunction(); gio(d)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <div class="z2 a1" >
-    <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Crying of Lot 49</span></p>
-    <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">What if an occult conflict between two rival mail distribution companies was the key to understanding US history? A secretive postal system – the Tristero, with mailboxes disguised as rubbish bins that display the mysterious slogan W.A.S.T.E (We Await Silent Tristero’s Empire), is a pervasive presence in this short novel. But does it even exist, or is it all a figment of Oedipa Maas’s fevered imagination as she tries to execute the will of a former lover amid the pop cultural wasteland of southern California?</span></p>
-    <a class="a2 shuffle" href="Geolocation.html">Go to Geolocations</a></h2>
-  </div>
+  map.addControl(new L.Control.Draw({
+    position: 'topleft',
+    draw: {
+      polygon: {
+        allowIntersection: true,
+        drawError: {
+          color: '#FFF',
+          timeout: 3000
+        },
+        shapeOptions: {
+          color: '#FFF',
+          weight: 1.5
+        },
+        showArea: true,
+        repeatMode: true,
+        metric: true
+      },
+      rectangle: {
+        repeatMode: true,
+        metric: true,
+        shapeOptions: {
+          color: '#FFF',
+          weight: 1.5
+        }
+      },
+      circle: {
+        repeatMode: true,
+        metric: true,
+        shapeOptions: {
+          color: '#662d91',
+          weight: 1.5
+        }
+      }
+    }
+  }));
+  map.on('draw:created', function(event) {
+    var layer = event.layer;
+    drawingLayer.addLayer(layer);
+  });
+  document.getElementById('delete').onclick = function(e) {
+           featureGroup.clearLayers();
+       }
 
-</div>
-<div id="four" class="a1">
-  <a href="#five" onclick="myFunction(); gio(a)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <div class="z2 a1" >
-    <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Mumbo Jumbo</span></p>
-    <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">In Reed’s postmodern voodoo fable, the Wallflower Order is an international conspiracy seeking control and order. It fights to suppress the “Jes Grew” virus, a feverish dance of jazz and freedom spread by certain black artists (“Jes Grew that touched John Coltrane’s tenor; that tinged the voice of Otis Redding”). Reed rewrites and undercuts Judeo-Christian mythology by drawing on Voodoo traditions and Afrocentric mythology to produce a hybrid tapestry of alternate history and spoof mythology.</span></p>
-    <a class="a2 shuffle" href="">Go to Deductions</a></h2>
-  </div>
+       document.getElementById('export').onclick = function(e) {
+           // Extract GeoJson from featureGroup
+           var data = featureGroup.toGeoJSON();
 
-</div>
-<div id="five" class="a1">
-  <a href="#six" onclick="myFunction(); gio(a)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <div class="z2 a1" >
-    <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Trial</span></p>
-    <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Josef K never finds out why the agents have come to arrest him or what it is he is supposed to have done wrong, and neither does the reader. The opaque nature of the conspiracy against K, and his futile efforts to make sense of the situation, point to a faceless world of bureaucratic terror and anticipate the unreal yet oppressive nature of many totalitarian regimes.</span></p>
-    <a class="a2 shuffle" href="">Go to Deductions</a></h2>
-  </div>
-<div id="six" class="a1">
-  <a href="#seven" onclick="myFunction(); gio(a)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <div class="z2 a1" >
-    <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Plot Against America</span></p>
-    <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">A “strong-man” celebrity, Charles Lindbergh, becomes president of the US. Backed by shadowy foreign powers and sympathetic towards Hitler, Lindbergh begins to introduce antisemitic policies. For a moment it looks as if the country might be about to ally itself with the Nazis. However, Roth wraps up his alternative history with a neat resolution and the normal course of events is restored. Something like this could never happen in real life, could it? </span></p>
-    <a class="a2 shuffle" href="">Go to Deductions</a></h2>
-  </div>
+           // Stringify the GeoJson
+           var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
 
-</div>
-<div id="seven" class="a1">
-  <a href="#eight" onclick="myFunction(); gio(a)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <div class="z2 a1" >
-    <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">The Book of Daniel</span></p>
-    <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">In 1953, Julius and Ethel Rosenberg were executed after being found guilty of disclosing nuclear weapons designs to the USSR. The fraught case did much to stoke fears of Soviet infiltration during the darkest days of the cold war. Doctorow’s novel is a fictional retelling of the case from the point of view of their oldest child, who researches what happened to his parents while studying for his PhD. The novel plays out against a backdrop of anti-Vietnam war protests as Doctorow makes a wry comment on the nature and possibility of dissent in the US.</span></p>
-    <a class="a2 shuffle" href="">Go to Deductions</a></h2>
-  </div>
-
-</div>
-<div id="eight" class="a1">
-  <a href="#nine" onclick="myFunction(); gio(a)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <div class="z2 a1" >
-    <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">2666</span></p>
-    <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">It’s impossible to summarise the range and complexity of Bolaño’s 900-page masterpiece, but at its core are the unsolved murders of hundreds of women in the Mexican city of Santa Teresa. The failure of the authorities to solve these crimes seems connected, somehow, to the fictional German writer Benno Von Archimboldi, who is eventually traced by a team of scholars back to the same city. Dense, enigmatic and polyvocal, 2666 blends fact with fiction and documentary with invention to comment on the fraught and murderous nature of Mexican-American history.</span></p>
-    <a class="a2 shuffle" href="">Go to Deductions</a></h2>
-  </div>
-
-</div>
-<div id="nine" class="a1">
-  <a href="#ten" onclick="myFunction(); gio(a)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <div class="z2 a1" >
-    <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; "> Vida</span></p>
-    <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">The turn from anti-war and pro-environmental activism in the 60s to more violent anti-state actions in the late 70s is the subject of Piercy’s sixth novel. Partly inspired by the Weathermen, the novel tells the story of Vida as she struggles to maintain a double life, between clandestine anti-state actions and superficial legitimacy. Again, the paranoid and conspiratorial texture of contemporary US society forms the backdrop as the novel, highlighting the contrast between 60s idealism and the darker turn taken in the 70s. </span></p>
-    <a class="a2 shuffle" href="">Go to Deductions</a></h2>
-  </div>
-
-</div>
-<div id="ten" class="a1">
-  <a href="#one" onclick="myFunction(); gio(a)"><img src="css/Images/next.png" alt="next" height="30" style="margin-left:85%"></a>
-  <div class="z2 a1" >
-    <p><span class="shuffle is-main" style="font-family: 'Special Elite', cursive; ">Foucault’s Pendulum</span></p>
-    <p><span class="shuffle a3" style="font-family: 'David Libre', serif; font-size: 22px;">Eco’s fiendishly complex novel presents us with a mind-boggling array of esoteric conspiracies, from the Freemasons and the Bavarian Illuminati to Opus Dei. The novel concerns a spoof conspiracy theory, “the Plan”, created by three publishers who find their invention has gained a mysterious life of its own. Like Dan Brown in The Da Vinci Code, the novel draws on the Rennes-le-Château mythologies about the Ark of the Covenant. But Eco’s treatment is vastly more sophisticated, showing how such conspiracy theories can seduce the sceptical and credulous alike. </span></p>
-    <a class="a2 shuffle" href="">Go to Deductions</a></h2>
-  </div>
-
-</div>
+           // Create export
+           document.getElementById('export').setAttribute('href', 'data:' + convertedData);
+           document.getElementById('export').setAttribute('download','data.geojson');
+       }
+    </script>
+  </body>
+</html>

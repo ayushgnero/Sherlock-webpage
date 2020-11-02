@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Demo</title>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+
+    <!--Add mapbox.js -->
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+
+    <!--Add draw plugin -->
+    <link rel='stylesheet' href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.css' />
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.2/leaflet.draw.js'></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        #export {
+            position: absolute;
+            top:50px;
+            right:10px;
+            z-index:100;
+            background:white;
+            color:black;
+            padding:6px;
+            border-radius:4px;
+            font-family: 'Helvetica Neue';
+            cursor: pointer;
+            font-size:12px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id='map'></div>
+    <div id='delete'>Delete Features</div>
+    <a href='#' id='export'>Export Features</a>
+
+    <script>
+        var map = L.mapbox.map('map')
+            .setView([30.7333,76.7794], 14);
+
+        // Add layers to the map
+        L.control.layers({
+            'Custom': L.tileLayer('https://api.mapbox.com/styles/v1/maximusjordan/ckfvxxppr5h4019nruya3hgh5/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWF4aW11c2pvcmRhbiIsImEiOiJjanZmM3Bsd3IwY2g0NDBzM3A0MXVudm81In0.kKgFoSRwncHdfLR1SA8kpA', {}).addTo(map),}).addTo(map);
+
+        var featureGroup = L.featureGroup().addTo(map);
+
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: featureGroup
+            }
+        }).addTo(map);
+
+        map.on('draw:created', function(e) {
+
+            // Each time a feaute is created, it's added to the over arching feature group
+            featureGroup.addLayer(e.layer);
+        });
+
+
+        // on click, clear all layers
+        document.getElementById('delete').onclick = function(e) {
+            featureGroup.clearLayers();
+        }
+
+        document.getElementById('export').onclick = function(e) {
+            // Extract GeoJson from featureGroup
+            var data = featureGroup.toGeoJSON();
+
+            // Stringify the GeoJson
+            var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
+
+            // Create export
+            document.getElementById('export').setAttribute('href', 'data:' + convertedData);
+            document.getElementById('export').setAttribute('download','data.geojson');
+        }
+    </script>
+
+</body>
+
+</html>
