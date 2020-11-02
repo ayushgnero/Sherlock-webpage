@@ -1,149 +1,590 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<style media="screen">
-  @import url('https://fonts.googleapis.com/css2?family=Caudex:wght@700&family=Josefin+Slab:wght@600&display=swap');
-  html,body
-  {
-    margin:0;
-    background-color: black;
-    overflow:hidden;
-  }
-  .b1
-  {
-    z-index: 0;
-    display: block;
-  }
-  .b2
-  {
-    position:relative;
-    top:-95vh;
-    margin-left: 5%;
-    padding-bottom:3%;
-    height:86%;
-    overflow:hidden;
-  }
-  .b3
-  {
-    border: 1px black;
-    margin-top:2%;
-    background-color:rgba(0,0,0,0.4);
-    padding:2%;
-    border-radius:40px;
-    width:70vh;
-  }
-  .b4
-  {
 
-    overflow-y: scroll;
-    height:65vh;
-  }
-  h1
-  {
-    font-size:30px;
-    color:#ff0000;
-    font-family: 'Caudex', serif;
-  }
-  p
-  {
-    font-family: 'Josefin Slab', serif;
-    color:white;
-  }
-</style>
-<head>
-  <link rel="stylesheet" href="css/leaflet.css"/>
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-</head>
-<body>
-  <div id='mapid' style='width: 100%; height: 100vh;' class="b1"></div>
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
+<?php
+if(!defined('signup'))
+{
+  header("Location: Main.html");
+  exit();
+}
+?>
+<!doctype html>
+<html>
+    <head>
+      <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=David+Libre&family=Special+Elite&display=swap');
+            html, body {
+                padding:0;
+                margin:0;
+                height: 100vh;
+                width: 100%;
+                background:#000;
+                overflow:hidden;
+            }
 
-  <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
-  <script src="js/shuffletext.jquery.js"></script>
-  <script>
-      var mymap = L.map('mapid', { attributionControl:false }).setView([32.779167, -96.808611], 20);
-      var greenIcon = L.icon({
-          iconUrl: 'map.png',
+            .notes
+            {
+                position:absolute;
+                animation-delay: 0.5s;
+            }
+            @import url('https://fonts.googleapis.com/css2?family=Caudex:wght@700&family=Josefin+Slab:wght@600&display=swap');
+            html,body
+            {padding: 1%;
+              margin:0;
+              background-color: black;
+              overflow:hidden;
+            }
+            .b1
+            {
+              z-index: 0;
+              display: block;
+            }
+            .b2
+            {
+              position:relative;
+              top:-95vh;
+              margin-left: 5%;
+              padding-bottom:3%;
+              height:86%;
+              overflow:hidden;
+            }
+            .b3
+            {
+              border: 1px black;
+              margin-top:2%;
+              background-color:rgba(0,0,0,0.4);
+              padding:2%;
+              border-radius:40px;
+              width:70vh;
+            }
+            .b4
+            {
 
-          iconSize:     [28, 55], // size of the icon
-          iconAnchor:   [13, 50], // point of the icon which will correspond to marker's location
-          popupAnchor:  [0, -75] // point from which the popup should open relative to the iconAnchor
-      });
-      mymap.removeControl(mymap.zoomControl);
-      mymap.zoomControl.disable();
-      mymap.touchZoom.disable();
-      mymap.boxZoom.disable();
-      mymap.keyboard.disable();
-      var death = L.marker([32.779167, -96.808611], {icon: greenIcon}).addTo(mymap);//kenedey death spot
-      death.bindPopup("<b>The Site of Death</b><br>Friday, November 22nd, 1963,President Jhon F. Kennedy was assassinated while sitting in a car motorcade through Dallas, Texas.Struck by two bullets fired the second being a fatal Headshot. Governor Jhon B. Connally Jr. who was in the car with JFK, was also hit in the shooting, but survived.",{maxWidth : 560}).openPopup();
-      var shooter = L.marker([32.7796, -96.8084], {icon: greenIcon}).addTo(mymap);//kenedey killer spot
-      shooter.bindPopup("<b>The Location of the Shooter</b>Three bullets officially recovered. The Zapruder Film playing a major Role in the investigation.<br>The shooting occurred from the sixth floor window at the south east corner of the Texas School Book Depository, a building along the motorcade route.<br>The official ruling was that the gunman was a man named Lee Harvey Oswald.<br>Two day after the assassination, Oswald was killed by Jack Duby(Assassin) at the Dallas Police Department. The shooting was broadcasted on live television",{maxWidth : 560}).openPopup();
-      var shootingrange = [[32.779167, -96.808611],[32.7796, -96.8084]];
-      var polyline1 = L.polyline(shootingrange).addTo(mymap);
-      var motorcaderoute = [[32.779192605504846,-96.80605173110962],[32.77888591099118,-96.80785417556761],[32.7796331638395,-96.80803959884644],[32.77848901063954,-96.8096038192749],[32.778037985363675,-96.81068658828735],
-[32.77717201042541,-96.81214570999144],[32.776486440955736,-96.81532144546509]];
-      var polyline2 = L.polyline(motorcaderoute).addTo(mymap);
-      polyline2.bindPopup("<b>The Motorcade Route</b><br>Having an unusual amount of turns, the motorcae route was heavily criticised. This resulted as it being slowed down.<br>The route was chosen by Secret Service Agents,Winston G. Lawson and Forrest V. Sorrels.<br>Over 20,000 windows were noted on overlooking the route and opted to not inspect any of windows",{maxWidth:560}).openPopup();
-      L.tileLayer('https://api.mapbox.com/styles/v1/maximusjordan/ckfvxxppr5h4019nruya3hgh5/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWF4aW11c2pvcmRhbiIsImEiOiJjanZmM3Bsd3IwY2g0NDBzM3A0MXVudm81In0.kKgFoSRwncHdfLR1SA8kpA', {}).addTo(mymap);
+              overflow-y: scroll;
+              height:65vh;
+            }
+            h1
+            {
+              font-size:30px;
+              color:#ff0000;
+              font-family: 'Caudex', serif;
+            }
+            p
+            {
+              font-family: 'Josefin Slab', serif;
+              color:white;
+            }
+            .wrapper {
+          margin-top: -3%;
+          margin-left: 15%;
+          position: fixed;
+          width: 1%;
+          height: 1%;
+          z-index: 999999;
 
-      function updatemap(a)
-      {
-        mymap.setView(a,11);
-        mymap.update();
-      }
-  </script>
-  <script type="text/javascript">
-  function myFunction() {
-          const random_char = () => {
-      const possible = "!\"#$%&@[\\]^_`{|}~" +
-            "0129" +
-            "ABCDEFPQRSTUVWXYZ"
-      return possible.charAt(Math.floor(Math.random() * possible.length));
-      };
+          }
+          .figcaption {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          z-index: 4;
+          background: transparent;
+          color: #000;
+          width: 30px;
+          height: auto;
+          max-height: 30px;
+          border-radius: 50%;
+          max-width: 220px;
+          box-shadow: 0 2px 30px 0 rgba(0,0,0,0.3);
+          transition: all .75s cubic-bezier(0.215,0.61,0.355,1);
+          transition-delay: .5s;
+          }
+          .figcaption:before {
+          display: block;
+          position: absolute;
+          width: 0;
+          height: 0;
+          bottom: 99.5%;
+          left: 0;
+          content: '';
+          z-index: 3;
+          border-left: 15px solid transparent;
+          border-right: 15px solid transparent;
+          border-bottom: 15px solid #FFFFFF10;
+          overflow: hidden;
+          transform: translateY(100%);
+          transition: all .75s;
+          transition-delay: .5s;
+          }
+          .a1
+          {
+            margin-top:4%;
+            width:187vh;
+          }
+          .figcaption.is-expanded {
+          top: 50%;
+          left: 45%;
+          color:transparent;
+          width: 1500px;
+          height:1500px;
+          border-radius: 0;
+          max-width: 1500px;
+          max-height: 1500px;
+          box-shadow: 0 2px 30px 0 rgba(0,0,0,0.3);
+          transition-delay: 0s;
+          }
+          .figcaption.is-expanded:before {
+          left: 30px;
+          transform: translateY(0%);
+          transition-delay: 0s;
+          }
+          .figcaption-icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 30px;
+          height: 30px;
+          font-size: 18px;
+          z-index: 5;
+          color: #fff;
+          transform: rotate(0deg);
+          cursor: pointer;
+          border-radius: 50%;
+          transition: all .75s cubic-bezier(0.215,0.61,0.355,1);
+          transition-delay: .5s;
+          }
+          h2
+          {
+            color:#CC0000;
+          }
+          h3
+          {
+            color:#CC0000;
+          }
+          h4
+          {
+            color:#aa0000;
+          }
+          .figcaption-icon.is-expanded {
+          left: 100%;
+          width:2900px;
+          transform: rotate(405deg);
+          transition-delay: 0s;
+          }
+          .caption-title {
+          font-family: sans-serif;
+          position: relative;
+          background: #FF0000;
+          color: #fff;
+          text-transform: uppercase;
+          display: inline-block;
+          padding: 5px 7.5px;
+          margin-bottom: 30px;
+          transform: translateX(-15px) translateY(10px);
+          opacity: 0;
+          white-space: nowrap;
+          transition: all .5s;
+          transition-delay: 0s;
+          }
+          .figcaption.is-expanded .caption-title {
+          opacity: 1;
+          white-space: nowrap;
+          transition-delay: 0.2s;
+          }
+          .caption-copy-wrap {
+          opacity: 0;
+          overflow: hidden;
+          max-height:80vh;
+          transition: all .3s;
+          transition-delay: 0s;
+          }
+          .figcaption.is-expanded .caption-copy-wrap {
+          opacity: 1;
+          white-space: normal;
+          transition-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+          transition-delay: 0.1s;
+          }
+          .caption-copy {
+          font-family: sans-serif;
+          margin: 0;
+          padding: 10px 20px 20px 20px;
+          font-size: 0.875rem;
+          line-height: 1.28571429;
+          }
+          .a2
+          {
+            overflow-y: auto;
+            padding-right: 2%;
+            height: 77vh;
+            z-index: 0;
+          }
+          .simplebar-scrollbar::before {
+            background-color: red;
+          }
+        </style>
+        <link rel="stylesheet" href="css/leaflet.css"/>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.js"></script>
+        <script src="implementations/three-prwm-loader/PRWMLoader.js"></script>
+    </head>
+    <body>
+        <img src="css/Images/kri.png" alt="logo" style="height: 75px; position: absolute; left:2%; top:2%">
+        <div class="models">
 
-      const mask = (chars, progress) => {
-      const masked = [];
+        </div>
+        </div>
+        <div class="notes">
 
-      for (let i = 0; i < chars.length; i++) {
-        const position = (i + 1) / chars.length;
-        if (position > progress) {
-          masked.push(random_char());
-        } else {
-          masked.push(chars[i]);
-        }
-      }
+          <div class="a1">
+            <h1>JFK Assassination</h1>
+            <div class="wrapper">
+              <span class="figcaption-icon js-expand" title="Did You Know?">&plus;</span>
+              <figcaption class="figcaption">
+                 <div class="caption-title">Motorcade Route</div>
+                 <div class="caption-copy-wrap">
+                  <div id='mapid' style='width: 150vh; height: 100vh;' class="b1"></div>
+                  </div>
+              </figcaption>
+            </div>
+            <div class="a2" data-simplebar>
+              <h3>November 22, 1963: Death of the President</h3>
+              <h4>Shortly after noon on November 22, 1963, President John F. Kennedy was assassinated as he rode in a motorcade through Dealey Plaza in downtown Dallas, Texas.</h4>
+              <p>By the fall of 1963, President John F. Kennedy and his political advisers were preparing for the next presidential campaign. Although he had not formally announced his candidacy, it was clear that President Kennedy was going to run and he seemed confident about his chances for re-election.
 
-      return masked.join('');
-      };
+          At the end of September, the president traveled west, speaking in nine different states in less than a week. The trip was meant to put a spotlight on natural resources and conservation efforts. But JFK also used it to sound out themes—such as education, national security, and world peace—for his run in 1964.</p>
+              <h3>Campaigning in Texas</h3>
+              <p>A month later, the president addressed Democratic gatherings in Boston and Philadelphia. Then, on November 12, he held the first important political planning session for the upcoming election year. At the meeting, JFK stressed the importance of winning Florida and Texas and talked about his plans to visit both states in the next two weeks.
 
-      const shuffle = el => {
-      const chars = el.textContent.split('');
+          Mrs. Kennedy would accompany him on the swing through Texas, which would be her first extended public appearance since the loss of their baby, Patrick, in August. On November 21, the president and first lady departed on Air Force One for the two-day, five-city tour of Texas.
 
-      const params = {
-        progress: 0
-      };
+          President Kennedy was aware that a feud among party leaders in Texas could jeopardize his chances of carrying the state in 1964, and one of his aims for the trip was to bring Democrats together. He also knew that a relatively small but vocal group of extremists was contributing to the political tensions in Texas and would likely make its presence felt—particularly in Dallas, where US Ambassador to the United Nations Adlai Stevenson had been physically attacked a month earlier after making a speech there. Nonetheless, JFK seemed to relish the prospect of leaving Washington, getting out among the people and into the political fray.
 
-      const a = anime({
-        targets: params,
-        progress: 1,
-        delay: 500,
-        duration: 500,
-        easing: 'easeInQuad',
-        update: () => {
-          el.textContent = mask(chars, params.progress);
-        },
-        complete: () => {
-          el.classList.add('completed');
-        }
-      });
-      };
+          The first stop was San Antonio. Vice President Lyndon B. Johnson, Governor John B. Connally, and Senator Ralph W. Yarborough led the welcoming party. They accompanied the president to Brooks Air Force Base for the dedication of the Aerospace Medical Health Center. Continuing on to Houston, he addressed a Latin American citizens' organization and spoke at a testimonial dinner for Congressman Albert Thomas before ending the day in Fort Worth.</p>
+            <h3>Morning in Fort Worth</h3>
+            <p>A light rain was falling on Friday morning, November 22, but a crowd of several thousand stood in the parking lot outside the Texas Hotel where the Kennedys had spent the night. A platform was set up and the president, wearing no protection against the weather, came out to make some brief remarks. "There are no faint hearts in Fort Worth," he began, "and I appreciate your being here this morning. Mrs. Kennedy is organizing herself. It takes longer, but, of course, she looks better than we do when she does it." He went on to talk about the nation's need for being "second to none" in defense and in space, for continued growth in the economy and "the willingness of citizens of the United States to assume the burdens of leadership."
 
-      for (const el of document.querySelectorAll('.shuffle')) {
-      shuffle(el);
-      }
-    }
+          The warmth of the audience response was palpable as the president reached out to shake hands amidst a sea of smiling faces.
 
-  </script>
-</body>
+          Back inside the hotel the president spoke at a breakfast of the Fort Worth Chamber of Commerce, focusing on military preparedness. "We are still the keystone in the arch of freedom," he said. "We will continue to do…our duty, and the people of Texas will be in the lead."</p>
+          <h3>On to Dallas</h3>
+          <p>The presidential party left the hotel and went by motorcade to Carswell Air Force Base for the thirteen-minute flight to Dallas. Arriving at Love Field,President and Mrs. Kennedy disembarked and immediately walked toward a fence where a crowd of well-wishers had gathered, and they spent several minutes shaking hands.
+
+          The first lady received a bouquet of red roses, which she brought with her to the waiting limousine. Governor John Connally and his wife, Nellie, were already seated in the open convertible as the Kennedys entered and sat behind them. Since it was no longer raining, the plastic bubble top had been left off. Vice President and Mrs. Johnson occupied another car in the motorcade.
+
+          The procession left the airport and traveled along a ten-mile route that wound through downtown Dallas on the way to the Trade Mart where the President was scheduled to speak at a luncheon.</p>
+          <h3>The Assassination</h3>
+          <p>Crowds of excited people lined the streets and waved to the Kennedys. The car turned off Main Street at Dealey Plaza around 12:30 p.m. As it was passing the Texas School Book Depository, gunfire suddenly reverberated in the plaza.
+
+          Bullets struck the president's neck and head and he slumped over toward Mrs. Kennedy. The governor was shot in his back.
+
+          The car sped off to Parkland Memorial Hospital just a few minutes away. But little could be done for the President. A Catholic priest was summoned to administer the last rites, and at 1:00 p.m. John F. Kennedy was pronounced dead. Though seriously wounded, Governor Connally would recover.
+
+          The president's body was brought to Love Field and placed on Air Force One. Before the plane took off, a grim-faced Lyndon B. Johnson stood in the tight, crowded compartment and took the oath of office, administered by US District Court Judge Sarah Hughes. The brief ceremony took place at 2:38 p.m.
+
+          Less than an hour earlier, police had arrested Lee Harvey Oswald, a recently hired employee at the Texas School Book Depository. He was being held for the assassination of President Kennedy and the fatal shooting, shortly afterward, of Patrolman J. D. Tippit on a Dallas street.
+
+          On Sunday morning, November 24, Oswald was scheduled to be transferred from police headquarters to the county jail. Viewers across America watching the live television coverage suddenly saw a man aim a pistol and fire at point blank range. The assailant was identified as Jack Ruby, a local nightclub owner. Oswald died two hours later at Parkland Hospital.</p>
+          <h3>The President's Funeral</h3>
+          <p>That same day, President Kennedy's flag-draped casket was moved from the White House to the Capitol on a caisson drawn by six grey horses, accompanied by one riderless black horse. At Mrs. Kennedy's request, the cortege and other ceremonial details were modeled on the funeral of Abraham Lincoln. Crowds lined Pennsylvania Avenue and many wept openly as the caisson passed. During the 21 hours that the president's body lay in state in the Capitol Rotunda, about 250,000 people filed by to pay their respects.
+
+          On Monday, November 25, 1963 President Kennedy was laid to rest in Arlington National Cemetery. The funeral was attended by heads of state and representatives from more than 100 countries, with untold millions more watching on television. Afterward, at the grave site, Mrs. Kennedy and her husband's brothers, Robert and Edward, lit an eternal flame.
+
+          Perhaps the most indelible images of the day were the salute to his father given by little John F. Kennedy Jr. (whose third birthday it was), daughter Caroline kneeling next to her mother at the president's bier, and the extraordinary grace and dignity shown by Jacqueline Kennedy.
+
+          As people throughout the nation and the world struggled to make sense of a senseless act and to articulate their feelings about President Kennedy's life and legacy, many recalled these words from his inaugural address:
+
+              <br><br>All this will not be finished in the first one hundred days, nor in the first one thousand days, nor in the life of this administration. Nor even perhaps in our lifetime on this planet. But let us begin.
+          </p>
+          <h2>Arlington National Cemetery</h2>
+          <h3>Aftermath</h3>
+          <h4>The Warren Commission</h4>
+          <p>On November 29, 1963 President Lyndon B. Johnson appointed the President's Commission on the Assassination of President Kennedy. It came to be known as the Warren Commission after its chairman, Earl Warren, Chief Justice of the United States. President Johnson directed the commission to evaluate matters relating to the assassination and the subsequent killing of the alleged assassin, and to report its findings and conclusions to him.</p>
+          <h3>The House Select Committee on Assassinations</h3>
+          <p>The US House of Representatives established the House Select Committee on Assassinations in 1976 to reopen the investigation of the assassination in light of allegations that previous inquiries had not received the full cooperation of federal agencies.
+
+        Note to the reader: Point 1B in the link below to the findings of the 1979 House Select Committee on Assassinations states that the committee had found "a high probability that two gunmen fired" at the president. This conclusion resulted from the last-minute “discovery” of a Dallas police radio transmission tape that allegedly provided evidence that four or more shots were fired in Dealey Plaza. After the report appeared in print, acoustic experts analyzed the tape and proved conclusively that it was completely worthless—thus negating the finding in Point 1B.
+
+        The committee, which also investigated the death of Dr. Martin Luther King Jr., issued its report on March 29, 1979.</p>
+        <h3>Assassination Records Collection</h3>
+        <p>Through the President John F. Kennedy Assassination Records Collection Act of 1992, the US Congress ordered that all assassination-related material be housed together under supervision of the National Archives and Records Administration.</p>
+            </div>
+          </div>
+        </div>
+
+        <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+        <script>
+
+            var container;
+
+            var camera, scene, renderer;
+
+            var mouseX = 0, mouseY = 0;
+
+            var windowHalfX = window.innerWidth / 2;
+            var windowHalfY = window.innerHeight / 2;
+
+
+            init();
+
+            animate();
+
+
+            function init() {
+                container = document.createElement( 'div' );
+                document.body.appendChild( container );
+
+                camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 9000 );
+                camera.position.z = 7550;
+
+                // scene
+
+                scene = new THREE.Scene();
+
+                var ambient = new THREE.AmbientLight( 0x2200000);
+                scene.add( ambient );
+
+                var directionalLight = new THREE.DirectionalLight( 0xff00000,1);
+                directionalLight.position.set( 10001, 1010, 1010 );
+                scene.add( directionalLight );
+                // model
+                  const spotLight = new THREE.SpotLight( 0xff00000 );
+                    spotLight.position.set( 10001, 1010, 1010 );
+
+                    spotLight.castShadow = true;
+
+                    spotLight.shadow.mapSize.width = 1024;
+                    spotLight.shadow.mapSize.height = 1024;
+
+                    spotLight.shadow.camera.near = 500;
+                    spotLight.shadow.camera.far = 4000;
+                    spotLight.shadow.camera.fov = 30;
+
+            scene.add( spotLight );
+
+                var loader = new THREE.PRWMLoader();
+                var material = new THREE.MeshPhongMaterial({
+                    side: THREE.FrontSide
+                });
+
+                /*
+                var material = new THREE.MeshBasicMaterial({
+                    map: new THREE.TextureLoader().load( "./assets/images/IWP.001.png" )
+                });*/
+
+
+                var busy = false;
+                var mesh = null;
+
+                var onProgress = function ( xhr ) {
+                    if ( xhr.lengthComputable ) {
+                        var percentComplete = xhr.loaded / xhr.total * 100;
+                        console.log( Math.round(percentComplete, 2) + '% downloaded' );
+
+                        if (xhr.loaded === xhr.total) {
+                            console.log('File size: ' + (xhr.total / 1024).toFixed(2) + 'kB');
+                            console.timeEnd('Download');
+                        }
+                    }
+                };
+
+                var onError = function ( xhr ) {
+                    busy = false;
+                };
+
+                function loadGeometry (url) {
+                    if (busy) return;
+
+                    busy = true;
+
+                    if (mesh !== null) {
+                        scene.remove(mesh);
+                        mesh.geometry.dispose();
+                    }
+
+                    console.log('-- Loading', url);
+                    console.time('Download');
+                    loader.load( url, function ( geometry ) {
+                        mesh = new THREE.Mesh(geometry, material);
+                        mesh.scale.set(50,50,50);
+                        scene.add( mesh );
+
+                        console.log(geometry.index ? 'indexed geometry' : 'non-indexed geometry');
+                        console.log('# of vertices: ' + geometry.attributes.position.count);
+                        console.log('# of polygons: ' + (geometry.index ? geometry.index.count / 3 : geometry.attributes.position.count / 3));
+                        busy = false;
+                    }, onProgress, onError );
+                }
+
+
+                //
+
+                renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setPixelRatio( 1 );
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                container.appendChild( renderer.domElement );
+
+                document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+                //
+
+                document.querySelectorAll('a.model').forEach(function (anchor) {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        loadGeometry(anchor.href);
+                    });
+                });
+
+                //
+
+                loadGeometry('models/prwm/iot.be.prwm');
+
+                window.addEventListener( 'resize', onWindowResize, false );
+
+            }
+
+
+            function onWindowResize() {
+
+                windowHalfX = window.innerWidth / 0.05;
+                windowHalfY = window.innerHeight / 0.5;
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+            }
+
+            function onDocumentMouseMove( event ) {
+            
+                mouseX = ( event.clientX - windowHalfX ) / 0.05;
+                mouseY = ( event.clientY - windowHalfY ) / 0.05;
+
+            }
+
+            //
+
+            function animate() {
+
+                requestAnimationFrame( animate );
+                render();
+
+            }
+
+            function render() {
+
+                camera.position.x += ( -mouseX - camera.position.x ) * .01;
+                camera.position.y += (  mouseY - camera.position.y ) * .01;
+
+                camera.lookAt( scene.position );
+
+                renderer.render( scene, camera );
+
+            }
+
+        </script>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+         crossorigin=""></script>
+
+        <script src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+        <script src="js/shuffletext.jquery.js"></script>
+        <script>
+            var mymap = L.map('mapid', { attributionControl:false }).setView([32.779167, -96.808611], 20);
+            var greenIcon = L.icon({
+                iconUrl: 'map.png',
+
+                iconSize:     [28, 55], // size of the icon
+                iconAnchor:   [13, 50], // point of the icon which will correspond to marker's location
+                popupAnchor:  [0, -75] // point from which the popup should open relative to the iconAnchor
+            });
+            mymap.removeControl(mymap.zoomControl);
+            mymap.zoomControl.disable();
+            mymap.touchZoom.disable();
+            mymap.boxZoom.disable();
+            mymap.keyboard.disable();
+            var death = L.marker([32.779167, -96.808611], {icon: greenIcon}).addTo(mymap);//kenedey death spot
+            death.bindPopup("<b>The Site of Death</b><br>Friday, November 22nd, 1963,President Jhon F. Kennedy was assassinated while sitting in a car motorcade through Dallas, Texas.Struck by two bullets fired the second being a fatal Headshot. Governor Jhon B. Connally Jr. who was in the car with JFK, was also hit in the shooting, but survived.",{maxWidth : 560}).openPopup();
+            var shooter = L.marker([32.7796, -96.8084], {icon: greenIcon}).addTo(mymap);//kenedey killer spot
+            shooter.bindPopup("<b>The Location of the Shooter</b>Three bullets officially recovered. The Zapruder Film playing a major Role in the investigation.<br>The shooting occurred from the sixth floor window at the south east corner of the Texas School Book Depository, a building along the motorcade route.<br>The official ruling was that the gunman was a man named Lee Harvey Oswald.<br>Two day after the assassination, Oswald was killed by Jack Duby(Assassin) at the Dallas Police Department. The shooting was broadcasted on live television",{maxWidth : 560}).openPopup();
+            var shootingrange = [[32.779167, -96.808611],[32.7796, -96.8084]];
+            var polyline1 = L.polyline(shootingrange).addTo(mymap);
+            var motorcaderoute = [[32.779192605504846,-96.80605173110962],[32.77888591099118,-96.80785417556761],[32.7796331638395,-96.80803959884644],[32.77848901063954,-96.8096038192749],[32.778037985363675,-96.81068658828735],
+      [32.77717201042541,-96.81214570999144],[32.776486440955736,-96.81532144546509]];
+            var polyline2 = L.polyline(motorcaderoute).addTo(mymap);
+            polyline2.bindPopup("<b>The Motorcade Route</b><br>Having an unusual amount of turns, the motorcae route was heavily criticised. This resulted as it being slowed down.<br>The route was chosen by Secret Service Agents,Winston G. Lawson and Forrest V. Sorrels.<br>Over 20,000 windows were noted on overlooking the route and opted to not inspect any of windows",{maxWidth:560}).openPopup();
+            L.tileLayer('https://api.mapbox.com/styles/v1/maximusjordan/ckfvxxppr5h4019nruya3hgh5/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibWF4aW11c2pvcmRhbiIsImEiOiJjanZmM3Bsd3IwY2g0NDBzM3A0MXVudm81In0.kKgFoSRwncHdfLR1SA8kpA', {}).addTo(mymap);
+
+            function updatemap(a)
+            {
+              mymap.setView(a,11);
+              mymap.update();
+            }
+        </script>
+        <script type="text/javascript">
+        function myFunction() {
+                const random_char = () => {
+            const possible = "!\"#$%&@[\\]^_`{|}~" +
+                  "0129" +
+                  "ABCDEFPQRSTUVWXYZ"
+            return possible.charAt(Math.floor(Math.random() * possible.length));
+            };
+
+            const mask = (chars, progress) => {
+            const masked = [];
+
+            for (let i = 0; i < chars.length; i++) {
+              const position = (i + 1) / chars.length;
+              if (position > progress) {
+                masked.push(random_char());
+              } else {
+                masked.push(chars[i]);
+              }
+            }
+
+            return masked.join('');
+            };
+
+            const shuffle = el => {
+            const chars = el.textContent.split('');
+
+            const params = {
+              progress: 0
+            };
+
+            const a = anime({
+              targets: params,
+              progress: 1,
+              delay: 500,
+              duration: 500,
+              easing: 'easeInQuad',
+              update: () => {
+                el.textContent = mask(chars, params.progress);
+              },
+              complete: () => {
+                el.classList.add('completed');
+              }
+            });
+            };
+
+            for (const el of document.querySelectorAll('.shuffle')) {
+            shuffle(el);
+            }
+          }
+
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" charset="utf-8"></script>
+        <script type="text/javascript">
+          $( ".js-expand" ).click(function()
+          {
+            $( ".js-expand" ).toggleClass('is-expanded');
+            $( ".figcaption" ).toggleClass('is-expanded');
+          });
+        </script>
+
+    </body>
 </html>
