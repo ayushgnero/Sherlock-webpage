@@ -29,10 +29,8 @@ controller.configure({
   }
 });
 controller.addData( data );
-// Initialize and render the globe
 controller.init();
 function gio(a)
 {
   controller.switchCountry(a);
-
 }
